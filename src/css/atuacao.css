@@ -1,0 +1,548 @@
+/* =====================================================================
+   ATUAÇÃO — seções próprias desta página (18/11/2026)
+   As peças comuns (abertura, "Nesta página", nota, foto com arco, faixa final) estão no paginas.css.
+   Cada eixo usa a sua cor (--cor = var(--eixo-N), posta no HTML) só em desenho: número, ícone, fio,
+   borda do cartão "Objetivo" e círculos da lista. Texto corrido fica sempre em tinta ou texto-2.
+   ===================================================================== */
+
+/* ---------- 1. "Os cinco eixos": cada pílula com o número na cor do eixo ----------
+   Texto pequeno na cor do eixo precisa de 4,5:1 sobre o branco da pílula. Os eixos 1, 2, 4 e 5 passam
+   (6,0 / 6,0 / 6,0 / 18,5:1); o 3 (#a8606b) fica no limite (4,6:1), então usa --cor-texto = rosa-profundo
+   (6,2:1), posto no HTML. --cor-texto vale para todo texto pequeno na cor do eixo. */
+.atuacao-sumario .sumario__num {
+	color: var(--cor-texto, var(--cor));
+}
+
+.atuacao-sumario .sumario__lista a:focus-visible {
+	background: var(--cor-texto, var(--cor));
+}
+
+.atuacao-sumario .sumario__lista a:focus-visible .sumario__num {
+	color: var(--branco);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.atuacao-sumario .sumario__lista a:hover {
+		background: var(--cor-texto, var(--cor));
+	}
+
+	.atuacao-sumario .sumario__lista a:hover .sumario__num {
+		color: var(--branco);
+	}
+}
+
+/* ---------- 2. Como ler os eixos: título da Home + o aviso honesto ao lado ---------- */
+.eixos-intro {
+	padding-bottom: 3.5rem;
+}
+
+.eixos-intro__grade {
+	display: grid;
+	gap: 0.5rem;
+}
+
+.eixos-intro .titulo-secao {
+	max-width: 13em;
+	margin: 0.75rem 0 0;
+}
+
+@media (min-width: 75rem) {
+	.eixos-intro {
+		padding-bottom: 5rem;
+	}
+
+	.eixos-intro__grade {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: 4rem;
+		align-items: end;
+	}
+
+	.eixos-intro__nota {
+		margin: 0;
+	}
+}
+
+/* ---------- 3. Os cinco eixos: o mesmo desenho nos cinco, foto alternando de lado ----------
+   Celular: número e ícone, título, resumo, foto com o cartão "Objetivo" mordendo a borda, lista.
+   Computador: texto numa coluna, foto (que encosta na borda da tela) e "Objetivo" na outra. */
+.eixo-bloco__grade {
+	display: grid;
+	grid-template-areas:
+		"cabeca"
+		"midia"
+		"lista";
+	gap: 2rem;
+}
+
+.eixo-bloco__cabeca {
+	grid-area: cabeca;
+}
+
+.eixo-bloco__midia {
+	grid-area: midia;
+	min-width: 0;
+}
+
+.eixo-bloco__lista {
+	grid-area: lista;
+}
+
+/* número e ícone do eixo, com o fio na cor do eixo (a faixa dos cartões da Home) */
+.eixo-bloco__marca {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.eixo-bloco__marca::after {
+	content: "";
+	flex: 1;
+	height: 3px;
+	border-radius: 3px;
+	background: var(--cor);
+	opacity: 0.45;
+}
+
+.eixo-bloco__icone {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--cor) 12%, var(--branco));
+	color: var(--cor);
+}
+
+.eixo-bloco__icone svg {
+	width: 1.9rem;
+	height: 1.9rem;
+}
+
+.eixo-bloco__num {
+	display: grid;
+	font-family: var(--fonte-titulo);
+	font-size: 2.5rem;
+	font-weight: 800;
+	line-height: 1;
+	letter-spacing: -0.02em;
+	color: var(--cor);
+}
+
+.eixo-bloco__palavra {
+	margin-bottom: 0.2rem;
+	font-family: var(--fonte);
+	font-size: var(--t-pequeno);
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--texto-2);
+}
+
+.eixo-bloco__titulo {
+	max-width: 15em;
+	margin: 1.5rem 0 0;
+	font-size: clamp(2rem, 1.55rem + 1.5vw, 2.875rem);
+	line-height: 1.1;
+}
+
+.eixo-bloco__resumo {
+	max-width: 30rem;
+	margin: 1rem 0 0;
+	font-family: var(--fonte-titulo);
+	font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: -0.01em;
+	color: var(--texto-2);
+}
+
+/* a foto do eixo em 4:3 (no celular a 3:2 virava uma tira baixa e cortava as pessoas na cintura);
+   o cartão "Objetivo" morde só um pouco a borda de baixo, para não cobrir a foto */
+.eixo-bloco__foto img {
+	aspect-ratio: 4 / 3;
+}
+
+.eixo-bloco__objetivo {
+	position: relative;
+	z-index: 1;
+	margin: -1.5rem 1rem 0;
+	padding: 1.5rem 1.5rem 1.6rem;
+	border-top: 6px solid var(--cor);
+	border-radius: var(--raio-grande);
+	background: var(--branco);
+	box-shadow: var(--sombra);
+}
+
+.eixo-bloco__subtitulo {
+	margin: 0;
+	font-size: var(--t-h3);
+}
+
+.eixo-bloco__objetivo p {
+	margin: 0.6rem 0 0;
+	color: var(--tinta);
+	line-height: 1.55;
+}
+
+/* o que pode incluir: a lista com "check" na cor do eixo */
+.eixo-bloco .lista-check {
+	margin-top: 1.25rem;
+}
+
+.eixo-bloco .lista-check li::before {
+	background: var(--cor);
+}
+
+.eixo-bloco__importante {
+	margin-top: 2rem;
+}
+
+.eixo-bloco__link {
+	gap: 0.6rem;
+	margin-top: 1.5rem;
+}
+
+.eixo-bloco__seta {
+	display: inline-flex;
+	transition: translate var(--mov-hover) var(--curva);
+}
+
+.eixo-bloco__seta svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.eixo-bloco__link:focus-visible .eixo-bloco__seta {
+		translate: 6px 0;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.eixo-bloco__link:hover .eixo-bloco__seta {
+		translate: 6px 0;
+	}
+}
+
+/* tablet e computador: texto numa coluna, foto e "Objetivo" na outra. Antes a grade só abria a partir
+   de 75rem e, no tablet, cada eixo virava uma coluna única com foto de ~500 px (página com ~9.900 px). */
+@media (min-width: 48rem) {
+	.eixo-bloco__grade {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		grid-template-rows: auto 1fr;
+		grid-template-areas:
+			"cabeca midia"
+			"lista  midia";
+		column-gap: 2.5rem;
+		row-gap: 2rem;
+		align-items: start;
+	}
+
+	.eixo-bloco--foto-esq .eixo-bloco__grade {
+		grid-template-areas:
+			"midia cabeca"
+			"midia lista";
+	}
+
+	.eixo-bloco__icone {
+		width: 4.5rem;
+		height: 4.5rem;
+	}
+
+	.eixo-bloco__icone svg {
+		width: 2.1rem;
+		height: 2.1rem;
+	}
+
+	.eixo-bloco__num {
+		font-size: 2.875rem;
+	}
+
+	/* a foto encosta na borda da tela do seu lado, como a da Apresentação em "O Instituto" */
+	.eixo-bloco--foto-dir .eixo-bloco__foto {
+		margin-right: calc(-1 * var(--margem));
+	}
+
+	.eixo-bloco--foto-esq .eixo-bloco__foto {
+		margin-left: calc(-1 * var(--margem));
+	}
+
+	/* o cartão fica do lado do texto, mordendo a foto */
+	.eixo-bloco__objetivo {
+		margin: -3rem 0 0;
+		padding: 1.5rem 1.6rem 1.6rem;
+	}
+
+	.eixo-bloco--foto-dir .eixo-bloco__objetivo {
+		margin-right: 1.5rem;
+	}
+
+	.eixo-bloco--foto-esq .eixo-bloco__objetivo {
+		margin-left: 1.5rem;
+	}
+}
+
+@media (min-width: 64rem) {
+	.eixo-bloco__grade {
+		column-gap: 3.5rem;
+	}
+
+	.eixo-bloco__objetivo {
+		margin-top: -4.5rem;
+		padding: 1.75rem 2rem 1.9rem;
+	}
+
+	/* aqui a margem lateral do computador (175 px) estreita a coluna: o cartão usa a largura toda dela */
+	.eixo-bloco--foto-dir .eixo-bloco__objetivo {
+		margin-right: 0;
+	}
+
+	.eixo-bloco--foto-esq .eixo-bloco__objetivo {
+		margin-left: 0;
+	}
+}
+
+@media (min-width: 75rem) {
+	.eixo-bloco__grade {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+		column-gap: 5rem;
+		row-gap: 2.75rem;
+	}
+
+	.eixo-bloco--foto-esq .eixo-bloco__grade {
+		grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+	}
+
+	.eixo-bloco__objetivo {
+		margin-top: -6rem;
+		padding: 2rem 2.25rem 2.1rem;
+	}
+
+	.eixo-bloco--foto-dir .eixo-bloco__objetivo {
+		margin-right: 3rem;
+	}
+
+	.eixo-bloco--foto-esq .eixo-bloco__objetivo {
+		margin-left: 3rem;
+	}
+}
+
+/* ---------- 4. Em todos os eixos: um fio que atravessa os cinco ícones ---------- */
+.transversal__cabeca {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.transversal .titulo-secao {
+	max-width: 14em;
+	margin: 0.75rem 0 0;
+}
+
+.transversal__texto {
+	max-width: 36rem;
+	margin: 0;
+	font-family: var(--fonte-titulo);
+	font-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.625rem);
+	font-weight: 600;
+	line-height: 1.45;
+	letter-spacing: -0.01em;
+	color: var(--tinta);
+}
+
+/* Os cinco são links para o bloco de cada eixo nesta página: nome sublinhado e seta para baixo.
+   Celular: em coluna e compactos, o fio desce passando pelo centro dos círculos, seta à direita. */
+.travessia {
+	position: relative;
+	display: grid;
+	gap: 0.5rem;
+	margin: 2.5rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.travessia::before {
+	content: "";
+	position: absolute;
+	top: 1.75rem;
+	bottom: 1.75rem;
+	left: calc(1.75rem + 0.25rem - 2px);
+	width: 4px;
+	border-radius: 4px;
+	background: var(--petroleo);
+}
+
+.travessia__item {
+	position: relative;
+}
+
+.travessia__link {
+	display: grid;
+	grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+	gap: 1rem;
+	align-items: center;
+	padding: 0.25rem;
+	border-radius: var(--raio-grande);
+	color: var(--tinta);
+	text-decoration: none;
+}
+
+.travessia__icone {
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: var(--cor);
+	color: var(--branco);
+	box-shadow: 0 0 0 5px var(--branco);
+	transition: scale var(--mov-hover) var(--curva);
+}
+
+.travessia__icone svg {
+	width: 1.6rem;
+	height: 1.6rem;
+}
+
+.travessia__nome {
+	display: grid;
+	gap: 0.1rem;
+	font-family: var(--fonte-titulo);
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 1.3;
+	color: var(--tinta);
+	text-wrap: balance;
+	overflow-wrap: break-word;
+	hyphens: auto;
+}
+
+.travessia__texto {
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.22em;
+	text-decoration-color: color-mix(in srgb, var(--cor-texto, var(--cor)) 55%, transparent);
+}
+
+.travessia__num {
+	font-size: var(--t-pequeno);
+	font-weight: 800;
+	color: var(--cor-texto, var(--cor));
+}
+
+.travessia__seta {
+	display: inline-flex;
+	color: var(--cor-texto, var(--cor));
+	transition: translate var(--mov-hover) var(--curva);
+}
+
+.travessia__seta svg {
+	width: 1.375rem;
+	height: 1.375rem;
+}
+
+.travessia__link:focus-visible .travessia__texto {
+	text-decoration-color: currentColor;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.travessia__link:focus-visible .travessia__seta {
+		translate: 0 4px;
+	}
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.travessia__link:hover .travessia__texto {
+		text-decoration-color: currentColor;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.travessia__link:hover .travessia__seta {
+		translate: 0 4px;
+	}
+
+	.travessia__link:hover .travessia__icone {
+		scale: 1.06;
+	}
+}
+
+/* tablet e computador: os cinco lado a lado, o fio corre na horizontal de ponta a ponta */
+@media (min-width: 48rem) {
+	.travessia {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 1rem;
+		margin-top: 3.5rem;
+	}
+
+	.travessia::before {
+		top: calc(0.5rem + 2.25rem - 2px);
+		bottom: auto;
+		left: 0;
+		right: 0;
+		width: auto;
+		height: 4px;
+	}
+
+	.travessia__link {
+		grid-template-columns: minmax(0, 1fr);
+		justify-items: center;
+		grid-template-rows: auto auto 1fr;
+		gap: 1rem;
+		height: 100%;
+		padding: 0.5rem 0.25rem 0.75rem;
+		text-align: center;
+	}
+
+	.travessia__icone {
+		width: 4.5rem;
+		height: 4.5rem;
+		box-shadow: 0 0 0 6px var(--branco);
+	}
+
+	.travessia__icone svg {
+		width: 2rem;
+		height: 2rem;
+	}
+
+	.travessia__nome {
+		font-size: 1.0625rem;
+	}
+
+	/* as setas ficam alinhadas embaixo, mesmo quando o nome quebra em mais linhas */
+	.travessia__seta {
+		align-self: end;
+	}
+}
+
+@media (min-width: 75rem) {
+	.transversal__cabeca {
+		grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+		gap: 4rem;
+		align-items: end;
+	}
+
+	.travessia {
+		gap: 1.5rem;
+		margin-top: 4.5rem;
+	}
+
+	.travessia::before {
+		top: calc(0.5rem + 3rem - 2px);
+	}
+
+	.travessia__icone {
+		width: 6rem;
+		height: 6rem;
+		box-shadow: 0 0 0 8px var(--branco);
+	}
+
+	.travessia__icone svg {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+
+	.travessia__nome {
+		font-size: 1.1875rem;
+	}
+}

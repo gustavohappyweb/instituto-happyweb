@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cursos e tutoriais | Instituto Happy Web</title>
+	<meta name="description" content="Cursos e tutoriais do Instituto Happy Web: capacitação e vídeos com linguagem simples para pessoas e organizações sociais, na plataforma Moodle do Instituto.">
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="icon" href="../../public/icones/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="../../public/icones/favicon-48.png" sizes="48x48" type="image/png">
+	<link rel="apple-touch-icon" href="../../public/icones/apple-touch-icon.png">
+	<link rel="preload" href="../../public/fontes/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="../../public/fontes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<!-- "?v=" muda a cada versão: o navegador baixa os arquivos novos em vez de reaproveitar os antigos -->
+	<script src="../js/preferencias.js?v=11.2i3"></script>
+	<link rel="stylesheet" href="../css/normalize.css?v=11.2i3">
+	<link rel="stylesheet" href="../css/reset.css?v=11.2i3">
+	<link rel="stylesheet" href="../css/style-global.css?v=11.2i3">
+	<link rel="stylesheet" href="../css/paginas.css?v=11.2i3">
+	<link rel="stylesheet" href="../css/cursos-e-tutoriais.css?v=11.2i3">
+	<script defer src="../js/funções-global.js?v=11.2i3"></script>
+</head>
+<body>
+	<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+	<!-- ============================== CABEÇALHO ============================== -->
+	<header class="cabecalho">
+		<div class="cabecalho__dentro conteudo">
+			<a class="cabecalho__marca" href="../index.html">
+				<img src="../../public/imagens/marca/instituto-happy-web-preto.svg" alt="Instituto Happy Web — página inicial" width="104" height="72">
+			</a>
+			<nav class="menu" aria-label="Menu principal">
+				<ul class="menu__lista">
+					<li><a href="./o-instituto.html">O Instituto</a></li>
+					<li><a href="./atuacao.html">Atuação</a></li>
+					<li><a href="./cursos-e-tutoriais.html" aria-current="page">Cursos e tutoriais</a></li>
+					<li><a href="./transparencia.html">Transparência</a></li>
+				</ul>
+			</nav>
+			<div class="cabecalho__acoes">
+				<button class="botao-texto" type="button" data-texto-maior>
+					<span class="botao-texto__a" data-texto-sinal>A+</span>
+					<span class="botao-texto__rotulo" data-texto-rotulo>Texto maior</span>
+				</button>
+				<a class="botao botao--primario cabecalho__falar" href="./contato.html">Falar com o Instituto</a>
+				<button class="botao-menu" type="button" aria-expanded="false" aria-controls="painel" data-menu-abrir>
+					<span class="botao-menu__traços" aria-hidden="true"></span>
+					<span>Menu</span>
+				</button>
+			</div>
+		</div>
+	</header>
+
+	<!-- painel do menu (celular, tablet e computador com "Texto maior") -->
+	<div class="painel" id="painel" data-painel role="dialog" aria-modal="true" aria-label="Menu" hidden>
+		<div class="painel__topo conteudo">
+			<a class="cabecalho__marca" href="../index.html">
+				<img src="../../public/imagens/marca/instituto-happy-web-preto.svg" alt="Instituto Happy Web — página inicial" width="104" height="72">
+			</a>
+			<button class="botao-menu botao-menu--fechar" type="button" data-menu-fechar>
+				<span class="botao-menu__traços" aria-hidden="true"></span>
+				<span>Fechar</span>
+			</button>
+		</div>
+		<nav class="painel__menu conteudo" aria-label="Menu principal no celular">
+			<ul>
+				<li><a href="../index.html">Início</a></li>
+				<li><a href="./o-instituto.html">O Instituto</a></li>
+				<li><a href="./atuacao.html">Atuação</a></li>
+				<li><a href="./cursos-e-tutoriais.html" aria-current="page">Cursos e tutoriais</a></li>
+				<li><a href="./transparencia.html">Transparência</a></li>
+			</ul>
+			<a class="botao botao--primario painel__falar" href="./contato.html">Falar com o Instituto</a>
+			<address class="painel__endereco">Rua Valdemar Ferraza, <span class="sem-quebra">21 – Amadori</span><br>Pato&nbsp;Branco&nbsp;(PR) – <span class="sem-quebra">CEP 85502-220</span></address>
+		</nav>
+	</div>
+
+	<main id="conteudo" tabindex="-1">
+
+		<!-- ============================== ABERTURA ============================== -->
+		<section class="pagina-abertura" aria-labelledby="pagina-titulo">
+			<div class="pagina-abertura__dentro conteudo">
+				<div class="pagina-abertura__texto">
+					<nav class="migalhas hw-entra hw-entra--texto" aria-label="Você está em">
+						<ol>
+							<li><a href="../index.html">Início</a></li>
+							<li><span aria-current="page">Cursos e tutoriais</span></li>
+						</ol>
+					</nav>
+					<h1 class="pagina-abertura__titulo hw-entra hw-entra--texto" id="pagina-titulo">Cursos e tutoriais</h1>
+					<p class="pagina-abertura__subtitulo hw-entra hw-entra--texto">Capacitação e vídeos com linguagem simples para pessoas e organizações sociais. As atividades iniciais previstas serão gratuitas e acontecerão na plataforma Moodle do Instituto.</p>
+				</div>
+				<div class="pagina-abertura__icone hw-entra hw-entra--icone" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+				</div>
+			</div>
+		</section>
+
+		<nav class="sumario conteudo" aria-labelledby="sumario-titulo">
+			<div class="sumario__cartao hw-entra hw-entra--cartao">
+				<h2 class="sumario__titulo" id="sumario-titulo">Nesta página</h2>
+				<ul class="sumario__lista">
+					<li><a href="#plataforma"><span class="sumario__num" aria-hidden="true">01</span>Plataforma de cursos</a></li>
+					<li><a href="#objetivos"><span class="sumario__num" aria-hidden="true">02</span>Objetivos e públicos</a></li>
+					<li><a href="#temas"><span class="sumario__num" aria-hidden="true">03</span>Temas dos cursos</a></li>
+					<li><a href="#tutoriais"><span class="sumario__num" aria-hidden="true">04</span>Tutoriais</a></li>
+					<li><a href="#como-acessar"><span class="sumario__num" aria-hidden="true">05</span>Como acessar</a></li>
+					<li><a href="#perguntas"><span class="sumario__num" aria-hidden="true">06</span>Perguntas frequentes</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- ============================== 1. PLATAFORMA DE CURSOS ============================== -->
+		<!-- foto à esquerda, encostada na borda da tela; à direita, os "dois lugares": este site e a plataforma -->
+		<section class="secao secao--branca plataforma" id="plataforma" aria-labelledby="plataforma-titulo">
+			<div class="plataforma__grade conteudo">
+				<figure class="foto-arco foto-arco--dir plataforma__foto hw-entra hw-entra--esq">
+					<img src="../../public/imagens/fotos/cursos-turma-1200.webp?v=p1"
+						srcset="../../public/imagens/fotos/cursos-turma-600.webp?v=p1 600w, ../../public/imagens/fotos/cursos-turma-900.webp?v=p1 900w, ../../public/imagens/fotos/cursos-turma-1200.webp?v=p1 1200w, ../../public/imagens/fotos/cursos-turma-1800.webp?v=p1 1800w"
+						sizes="(min-width: 64rem) 50vw, 100vw" width="1800" height="1200" loading="lazy"
+						alt="Foto ilustrativa: dois senhores de óculos olham a tela de um notebook enquanto um rapaz de camisa e gravata, em pé ao lado, acompanha.">
+				</figure>
+				<div class="plataforma__texto">
+					<p class="rotulo hw-entra hw-entra--texto">Plataforma de cursos</p>
+					<h2 class="titulo-secao hw-entra hw-entra--texto" id="plataforma-titulo">As aulas vão acontecer <span class="destaque">num espaço próprio.</span></h2>
+					<ol class="lugares">
+						<li class="lugar hw-entra hw-entra--cartao">
+							<span class="lugar__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></span>
+							<div>
+								<h3 class="lugar__titulo">Este site</h3>
+								<p>Vai apresentar os cursos e levar você até a plataforma.</p>
+							</div>
+						</li>
+						<li class="lugar hw-entra hw-entra--cartao">
+							<span class="lugar__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></span>
+							<div>
+								<h3 class="lugar__titulo">Plataforma Moodle</h3>
+								<p>O cadastro e as aulas vão acontecer na plataforma.</p>
+							</div>
+						</li>
+					</ol>
+					<div class="plataforma__situacao hw-entra hw-entra--texto">
+						<p class="etiqueta">Em preparação</p>
+						<p>A plataforma está em preparação. Quando um curso abrir, o botão de acesso aparecerá no próprio curso, nesta página.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================== 2. OBJETIVOS E PÚBLICOS ============================== -->
+		<!-- um cartão só, dividido ao meio: "para que servem" e "para quem" respondem juntas à mesma pergunta -->
+		<section class="secao secao--papel objetivos" id="objetivos" aria-label="Objetivos e públicos">
+			<div class="conteudo">
+				<div class="objetivos__cartao">
+					<div class="objetivos__metade hw-entra hw-entra--esq">
+						<p class="rotulo">Para que servem</p>
+						<h2 class="objetivos__titulo">Objetivos das capacitações.</h2>
+						<ul class="lista-check">
+							<li>Desenvolver competências para o trabalho nas organizações sociais.</li>
+							<li>Apoiar a gestão e a organização das entidades.</li>
+							<li>Ampliar o acesso ao conhecimento, com linguagem simples.</li>
+							<li>Facilitar o uso da tecnologia no dia a dia.</li>
+						</ul>
+					</div>
+					<div class="objetivos__metade objetivos__metade--publicos hw-entra hw-entra--dir">
+						<p class="rotulo">Para quem</p>
+						<h2 class="objetivos__titulo">Públicos previstos.</h2>
+						<ul class="publicos">
+							<li class="publico">
+								<span class="publico__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg></span>
+								<span>Dirigentes e equipes administrativas de organizações sociais.</span>
+							</li>
+							<li class="publico">
+								<span class="publico__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
+								<span>Voluntárias e voluntários dessas organizações.</span>
+							</li>
+							<li class="publico">
+								<span class="publico__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 3C7.6 3 7 9 9.6 12.6L15 21"/><path d="M12 3c4.4 0 5 6 2.4 9.6L9 21"/></svg></span>
+								<span>Integrantes das Redes Femininas de Combate ao Câncer.</span>
+							</li>
+							<li class="publico">
+								<span class="publico__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+								<span>Pessoas de todas as idades interessadas em aprender.</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================== 3. TEMAS DOS CURSOS ============================== -->
+		<!-- título à esquerda, os quatro temas em 2 × 2 à direita: cada tema é um cartão numerado, todos "Em preparação" -->
+		<section class="secao secao--branca temas" id="temas" aria-labelledby="temas-titulo">
+			<div class="temas__grade conteudo">
+				<div class="temas__cabeca">
+					<p class="rotulo hw-entra hw-entra--texto">Capacitação</p>
+					<h2 class="titulo-secao hw-entra hw-entra--texto" id="temas-titulo">Temas previstos <span class="destaque">para os primeiros cursos.</span></h2>
+					<div class="nota hw-entra hw-entra--texto">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+						<p>Datas e condições serão informadas quando cada curso abrir.</p>
+					</div>
+				</div>
+				<ol class="cartoes temas__lista">
+					<li class="cartao hw-entra hw-entra--cartao" style="--cor: var(--eixo-1)">
+						<div class="temas__topo">
+							<span class="cartao__num" aria-hidden="true">01</span>
+							<p class="etiqueta">Em preparação</p>
+						</div>
+						<h3 class="cartao__titulo">Captação de recursos para organizações</h3>
+						<p>Noções para organizações sociais planejarem a busca de recursos para manter e ampliar seu trabalho.</p>
+					</li>
+					<li class="cartao hw-entra hw-entra--cartao" style="--cor: var(--eixo-3)">
+						<div class="temas__topo">
+							<span class="cartao__num" aria-hidden="true">02</span>
+							<p class="etiqueta">Em preparação</p>
+						</div>
+						<h3 class="cartao__titulo">Capacitação de voluntários</h3>
+						<p>Formação para quem atua — ou quer atuar — como voluntária ou voluntário em organizações sociais.</p>
+					</li>
+					<li class="cartao hw-entra hw-entra--cartao" style="--cor: var(--eixo-2)">
+						<div class="temas__topo">
+							<span class="cartao__num" aria-hidden="true">03</span>
+							<p class="etiqueta">Em preparação</p>
+						</div>
+						<h3 class="cartao__titulo">Constituição e organização de entidades</h3>
+						<p>Os passos para criar uma entidade da sociedade civil e organizá-la para funcionar bem.</p>
+					</li>
+					<li class="cartao hw-entra hw-entra--cartao" style="--cor: var(--eixo-4)">
+						<div class="temas__topo">
+							<span class="cartao__num" aria-hidden="true">04</span>
+							<p class="etiqueta">Em preparação</p>
+						</div>
+						<h3 class="cartao__titulo">Orientações para elaborar o Estatuto Social</h3>
+						<p>O que é o estatuto social, para que serve e o que ele precisa conter.</p>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<!-- ============================== 4. TUTORIAIS (âncora da Home: #tutoriais) ============================== -->
+		<!-- faixa petróleo inteira (eco do banner da inclusão digital da Home, com o arco aprovado), mas aberta:
+		     foto encostada na borda esquerda, texto à direita e, embaixo, os três cuidados e a dica do "Texto maior" -->
+		<section class="secao secao--escura tutoriais" id="tutoriais" aria-labelledby="tutoriais-titulo">
+			<div class="tutoriais__grade conteudo">
+				<figure class="foto-arco foto-arco--dir tutoriais__foto hw-entra hw-entra--esq">
+					<img src="../../public/imagens/fotos/tutoriais-celular-1200.webp?v=p1"
+						srcset="../../public/imagens/fotos/tutoriais-celular-600.webp?v=p1 600w, ../../public/imagens/fotos/tutoriais-celular-900.webp?v=p1 900w, ../../public/imagens/fotos/tutoriais-celular-1200.webp?v=p1 1200w, ../../public/imagens/fotos/tutoriais-celular-1800.webp?v=p1 1800w"
+						sizes="(min-width: 64rem) 50vw, 100vw" width="1800" height="1200" loading="lazy"
+						alt="Foto ilustrativa: uma menina mostra a tela do celular a uma senhora de cabelos brancos, que sorri, sentadas a uma mesa com livros.">
+				</figure>
+				<div class="tutoriais__texto">
+					<div class="tutoriais__marcas hw-entra hw-entra--texto">
+						<p class="rotulo rotulo--claro">Inclusão digital</p>
+					</div>
+					<h2 class="titulo-secao hw-entra hw-entra--texto" id="tutoriais-titulo">Tutoriais <span class="tutoriais__destaque">em vídeo.</span></h2>
+					<p class="cabeca-secao__intro hw-entra hw-entra--texto">Vídeos com linguagem simples para o dia a dia. Os assuntos estão em definição.</p>
+					<article class="serie hw-entra hw-entra--cartao" aria-labelledby="serie-titulo">
+						<p class="etiqueta">Em preparação</p>
+						<h3 class="serie__titulo" id="serie-titulo">Tutoriais para as Redes Femininas de Combate ao Câncer</h3>
+						<p>Série de vídeos e conteúdos educativos pensada para as mulheres que participam das RFCCs. Assuntos em definição.</p>
+					</article>
+				</div>
+			</div>
+
+			<div class="tutoriais__cuidados conteudo">
+				<h3 class="tutoriais__subtitulo hw-entra hw-entra--texto">Como os tutoriais estão previstos</h3>
+				<ul class="cuidados">
+					<li class="cuidado hw-entra hw-entra--cartao">
+						<span class="cuidado__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M10 12h11"/><path d="M10 18h11"/><path d="M10 6h11"/><path d="M4 10h2"/><path d="M4 6h1v4"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></span>
+						<p>Um assunto por vez, explicado passo a passo.</p>
+					</li>
+					<li class="cuidado hw-entra hw-entra--cartao">
+						<span class="cuidado__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/></svg></span>
+						<p>Linguagem simples, sem termos técnicos.</p>
+					</li>
+					<li class="cuidado hw-entra hw-entra--cartao">
+						<span class="cuidado__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/><path d="M9 7h6"/><path d="M9 11h4"/></svg></span>
+						<p>Letras grandes e boa leitura no celular.</p>
+					</li>
+				</ul>
+				<div class="dica hw-entra hw-entra--texto">
+					<span class="dica__sinal" aria-hidden="true">A+</span>
+					<p><strong>Texto maior:</strong> Se as letras estiverem pequenas, use o botão “A+” (Texto maior), no alto da tela. A escolha vale para todo o site.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================== 5. COMO ACESSAR UM CURSO ============================== -->
+		<!-- uma trilha de três passos ligados por um fio: mostra a ordem, que é o que importa aqui -->
+		<section class="secao secao--papel acesso" id="como-acessar" aria-labelledby="acesso-titulo">
+			<div class="conteudo">
+				<div class="acesso__cabeca">
+					<div>
+						<p class="rotulo hw-entra hw-entra--texto">Passo a passo</p>
+						<h2 class="titulo-secao hw-entra hw-entra--texto" id="acesso-titulo">Como acessar <span class="destaque">um curso.</span></h2>
+						<p class="cabeca-secao__intro acesso__aviso hw-entra hw-entra--texto">É assim que vai funcionar quando o primeiro curso abrir.</p>
+					</div>
+				</div>
+				<ol class="trilha-acesso">
+					<li class="passo hw-entra hw-entra--cartao">
+						<span class="passo__num" aria-hidden="true">1</span>
+						<h3 class="passo__titulo"><span class="visualmente-oculto">Passo 1: </span>Escolha o curso</h3>
+						<p>Veja a lista nesta página. Os cursos abertos terão o botão “Acessar o curso”.</p>
+					</li>
+					<li class="passo hw-entra hw-entra--cartao">
+						<span class="passo__num" aria-hidden="true">2</span>
+						<h3 class="passo__titulo"><span class="visualmente-oculto">Passo 2: </span>Abra a plataforma</h3>
+						<p>O botão vai abrir a plataforma Moodle em uma nova aba. Este site continua aberto na aba anterior.</p>
+					</li>
+					<li class="passo hw-entra hw-entra--cartao">
+						<span class="passo__num" aria-hidden="true">3</span>
+						<h3 class="passo__titulo"><span class="visualmente-oculto">Passo 3: </span>Entre ou faça seu cadastro</h3>
+						<p>O cadastro e as aulas vão acontecer na plataforma. As regras de cada curso serão informadas lá.</p>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<!-- ============================== 6. PERGUNTAS FREQUENTES ============================== -->
+		<!-- título fixo à esquerda e as perguntas abrindo à direita (details/summary: funciona sem JavaScript) -->
+		<section class="secao secao--branca perguntas" id="perguntas" aria-labelledby="perguntas-titulo">
+			<div class="perguntas__grade conteudo">
+				<div class="perguntas__cabeca">
+					<p class="rotulo hw-entra hw-entra--texto">Dúvidas</p>
+					<h2 class="titulo-secao hw-entra hw-entra--texto" id="perguntas-titulo">Perguntas <span class="destaque">frequentes.</span></h2>
+					<p class="cabeca-secao__intro hw-entra hw-entra--texto">Toque em uma pergunta para ver a resposta.</p>
+				</div>
+				<div class="perguntas__lista">
+					<details class="pergunta hw-entra hw-entra--texto">
+						<summary>Os cursos são pagos?</summary>
+						<div class="pergunta__resposta">
+							<p>As atividades iniciais previstas serão gratuitas. As condições de cada curso serão informadas no próprio curso.</p>
+						</div>
+					</details>
+					<details class="pergunta hw-entra hw-entra--texto">
+						<summary>Onde as aulas acontecem?</summary>
+						<div class="pergunta__resposta">
+							<p>Na plataforma de cursos do Instituto, que vai usar o Moodle — um ambiente de aprendizagem on-line. Quando os cursos abrirem, este site vai apresentá-los e levar você até a plataforma.</p>
+						</div>
+					</details>
+					<details class="pergunta hw-entra hw-entra--texto">
+						<summary>Preciso criar uma conta?</summary>
+						<div class="pergunta__resposta">
+							<p>Quando a plataforma abrir, o cadastro e o acesso às aulas serão feitos nela. Este site não pede senha e não guarda dados de acesso.</p>
+						</div>
+					</details>
+					<details class="pergunta hw-entra hw-entra--texto">
+						<summary>Para quem são os cursos?</summary>
+						<div class="pergunta__resposta">
+							<p>Para dirigentes, equipes administrativas, voluntárias e voluntários de organizações sociais e para pessoas interessadas em capacitação. Cada curso vai informar o seu público.</p>
+						</div>
+					</details>
+					<details class="pergunta hw-entra hw-entra--texto">
+						<summary>Tenho pouca experiência com tecnologia. Consigo acompanhar?</summary>
+						<div class="pergunta__resposta">
+							<p>Os tutoriais em vídeo estão previstos para quem está começando, com linguagem simples e um passo de cada vez.</p>
+						</div>
+					</details>
+					<details class="pergunta hw-entra hw-entra--texto">
+						<summary>Recebo certificado?</summary>
+						<div class="pergunta__resposta">
+							<p>Ainda não há definição sobre certificados. Se um curso oferecer certificado, isso será informado no próprio curso.</p>
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================== PRÓXIMO PASSO ============================== -->
+		<section class="faixa-final" aria-labelledby="faixa-final-titulo">
+			<div class="faixa-final__dentro conteudo">
+				<div>
+					<p class="rotulo rotulo--claro hw-entra hw-entra--texto">Próximo passo</p>
+					<h2 class="titulo-secao hw-entra hw-entra--texto" id="faixa-final-titulo">Ficou alguma dúvida sobre os cursos?</h2>
+					<p class="hw-entra hw-entra--texto">Veja as perguntas frequentes ou conheça melhor o Instituto.</p>
+				</div>
+				<div class="faixa-final__botoes hw-entra hw-entra--texto">
+					<a class="botao botao--claro" href="#perguntas">Ver as perguntas frequentes</a>
+					<a class="botao botao--contorno-claro" href="./o-instituto.html">Conhecer o Instituto</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- ============================== RODAPÉ ============================== -->
+	<footer class="rodape">
+		<div class="rodape__grade conteudo">
+			<div class="rodape__marca">
+				<img src="../../public/imagens/marca/instituto-happy-web-branco.svg" alt="Instituto Happy Web" width="173" height="120">
+				<p>Educação, tecnologia e inclusão para fortalecer pessoas e organizações da sociedade civil.</p>
+			</div>
+			<nav class="rodape__menu" aria-labelledby="rodape-menu-titulo">
+				<h2 class="rodape__titulo" id="rodape-menu-titulo">Menu</h2>
+				<ul>
+					<li><a href="./o-instituto.html">O Instituto</a></li>
+					<li><a href="./atuacao.html">Atuação</a></li>
+					<li><a href="./cursos-e-tutoriais.html" aria-current="page">Cursos e tutoriais</a></li>
+					<li><a href="./transparencia.html">Transparência</a></li>
+					<li><a href="./contato.html">Contato</a></li>
+					<li><a href="./privacidade.html">Política de privacidade</a></li>
+				</ul>
+			</nav>
+			<div class="rodape__atendimento">
+				<h2 class="rodape__titulo">Onde estamos</h2>
+				<div class="rodape__sede">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+					<address>Instituto Happy Web<br>Rua Valdemar Ferraza, <span class="sem-quebra">21 – Amadori</span><br>Pato&nbsp;Branco&nbsp;(PR)&nbsp;– <span class="sem-quebra">CEP 85502-220</span></address>
+				</div>
+				<a class="link link--claro link--solto" href="./contato.html">Falar com o Instituto</a>
+			</div>
+		</div>
+		<div class="rodape__base conteudo hw-entra hw-entra--fio">
+			<p>© 2026 Instituto Happy Web · Associação sem fins lucrativos</p>
+			<p>Fotos ilustrativas de banco de imagens.</p>
+			<p>Desenvolvimento digital: Happy Web, empresa apoiadora</p>
+		</div>
+	</footer>
+
+	<!-- flutuante e aviso -->
+	<!-- botão do WhatsApp: o mesmo do site da Happy Web (23/11/2026). O número fica no funções-global.js (WHATSAPP);
+	     enquanto ele estiver vazio, o botão leva à página de Contato -->
+	<a class="whatsapp" href="./contato.html" data-whatsapp aria-label="Conversar pelo WhatsApp">
+		<svg viewBox="0 0 1219.547 1225.016" width="35" height="35" aria-hidden="true" focusable="false">
+			<path fill="#E0E0E0" d="M1041.858 178.02C927.206 63.289 774.753.07 612.325 0 277.617 0 5.232 272.298 5.098 606.991c-.039 106.986 27.915 211.42 81.048 303.476L0 1225.016l321.898-84.406c88.689 48.368 188.547 73.855 290.166 73.896h.258.003c334.654 0 607.08-272.346 607.222-607.023.056-162.208-63.052-314.724-177.689-429.463zm-429.533 933.963h-.197c-90.578-.048-179.402-24.366-256.878-70.339l-18.438-10.93-191.021 50.083 51-186.176-12.013-19.087c-50.525-80.336-77.198-173.175-77.16-268.504.111-278.186 226.507-504.503 504.898-504.503 134.812.056 261.519 52.604 356.814 147.965 95.289 95.36 147.728 222.128 147.688 356.948-.118 278.195-226.522 504.543-504.693 504.543z"/>
+			<path fill="#25D366" d="M27.875 1190.114l82.211-300.18c-50.719-87.852-77.391-187.523-77.359-289.602.133-319.398 260.078-579.25 579.469-579.25 155.016.07 300.508 60.398 409.898 169.891 109.414 109.492 169.633 255.031 169.57 409.812-.133 319.406-260.094 579.281-579.445 579.281-.023 0 .016 0 0 0h-.258c-96.977-.031-192.266-24.375-276.898-70.5l-307.188 80.548z"/>
+			<path fill="#FFF" fill-rule="evenodd" clip-rule="evenodd" d="M462.273 349.294c-11.234-24.977-23.062-25.477-33.75-25.914-8.742-.375-18.75-.352-28.742-.352-10 0-26.25 3.758-39.992 18.766-13.75 15.008-52.5 51.289-52.5 125.078 0 73.797 53.75 145.102 61.242 155.117 7.5 10 103.758 166.266 256.203 226.383 126.695 49.961 152.477 40.023 179.977 37.523s88.734-36.273 101.234-71.297c12.5-35.016 12.5-65.031 8.75-71.305-3.75-6.25-13.75-10-28.75-17.5s-88.734-43.789-102.484-48.789-23.75-7.5-33.75 7.516c-10 15-38.727 48.773-47.477 58.773-8.75 10.023-17.5 11.273-32.5 3.773-15-7.523-63.305-23.344-120.609-74.438-44.586-39.75-74.688-88.844-83.438-103.859-8.75-15-.938-23.125 6.586-30.602 6.734-6.719 15-17.508 22.5-26.266 7.484-8.758 9.984-15.008 14.984-25.008 5-10.016 2.5-18.773-1.25-26.273s-32.898-81.67-46.234-111.326z"/>
+			<path fill="#FFF" d="M1036.898 176.091C923.562 62.677 772.859.185 612.297.114 281.43.114 12.172 269.286 12.039 600.137 12 705.896 39.633 809.13 92.156 900.13L7 1211.067l318.203-83.438c87.672 47.812 186.383 73.008 286.836 73.047h.255.003c330.812 0 600.109-269.219 600.25-600.055.055-160.343-62.328-311.108-175.649-424.53zm-424.601 923.242h-.195c-89.539-.047-177.344-24.086-253.93-69.531l-18.227-10.805-188.828 49.508 50.414-184.039-11.875-18.867c-49.945-79.414-76.312-171.188-76.273-265.422.109-274.992 223.906-498.711 499.102-498.711 133.266.055 258.516 52 352.719 146.266 94.195 94.266 146.031 219.578 145.992 352.852-.118 274.999-223.923 498.749-498.899 498.749z"/>
+		</svg>
+		<span class="whatsapp__selo" aria-hidden="true">1</span>
+	</a>
+	<a class="voltar-topo" href="#conteudo" data-voltar-topo hidden>
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+		<span class="visualmente-oculto">Voltar ao topo</span>
+	</a>
+	<div class="aviso-privacidade" data-aviso role="region" aria-label="Aviso de privacidade" hidden>
+		<p>Este site não usa cookies de rastreamento. Ele só guarda, neste aparelho, preferências de uso, como o tamanho da letra e que você já viu este aviso. <a class="link link--claro" href="./privacidade.html">Política de privacidade</a></p>
+		<button class="botao botao--claro botao--pequeno" type="button" data-aviso-ok>Entendi</button>
+	</div>
+</body>
+</html>

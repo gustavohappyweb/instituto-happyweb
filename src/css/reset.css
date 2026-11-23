@@ -1,0 +1,80 @@
+/*
+ * reset.css — redefinições intencionais e mínimas.
+ * Não repete o normalize.css; só remove margens e estilos de fábrica que o
+ * sistema visual (style-global.css) redefine.
+ */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Listas com papel de navegação ou de componente não usam marcador.
+   :where() mantém especificidade zero, para os componentes poderem redefinir margens. */
+:where(ul[class], ol[class], nav ul, nav ol) {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+img,
+svg,
+video,
+canvas,
+picture {
+	display: block;
+	max-width: 100%;
+}
+
+img,
+video {
+	height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+	color: inherit;
+	letter-spacing: inherit;
+}
+
+button {
+	background: none;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+a {
+	color: inherit;
+}
+
+fieldset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	min-width: 0;
+}
+
+address {
+	font-style: normal;
+}
+
+[hidden] {
+	display: none !important;
+}
+
+:target {
+	scroll-margin-top: 7rem;
+}

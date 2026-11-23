@@ -1,0 +1,1441 @@
+/*
+ * style-global.css — Instituto Happy Web (versão 11)
+ * O que vale para todas as páginas: fontes, cores, tipos, tempos de movimento (--mov-*), grade,
+ * cabeçalho, menu do celular, botões, rótulos, etiquetas, rodapé, voltar ao topo e aviso; no fim,
+ * o bloco MOVIMENTO (entradas na rolagem, hovers comuns, sombra do cabeçalho, anel do topo).
+ * Tudo em rem: o "Texto maior" sobe o <html> para 120% e o site inteiro cresce junto.
+ */
+
+/* ---------- Fontes locais (licença OFL em public/fontes) ---------- */
+@font-face {
+	font-family: "Plus Jakarta Sans";
+	font-style: normal;
+	font-weight: 200 800;
+	font-display: swap;
+	src: url("../../public/fontes/plus-jakarta-sans-latin.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: "Plus Jakarta Sans";
+	font-style: normal;
+	font-weight: 200 800;
+	font-display: swap;
+	src: url("../../public/fontes/plus-jakarta-sans-latin-ext.woff2") format("woff2");
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("../../public/fontes/inter-latin.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: "Inter";
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url("../../public/fontes/inter-latin-ext.woff2") format("woff2");
+	unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---------- Tokens ---------- */
+:root {
+	/* paleta do briefing */
+	--tinta: #161218;
+	--branco: #ffffff;
+	--papel: #f7f4f1;
+	--petroleo: #0d6e73;
+	--rosa: #b76e79;            /* só desenho, nunca texto */
+	/* tons de apoio (propostos) */
+	--petroleo-escuro: #0a5559;
+	--petroleo-claro: #cdebec;
+	--rosa-claro: #f6e8e9;
+	--rosa-profundo: #8e4f5a;
+	--texto-2: #4a4350;
+	--petroleo-profundo: #0b3f42;   /* fundo da abertura e do rodapé (branco sobre ele: 11:1) */
+	--petroleo-suave: #e7f3f3;      /* fundo dos ícones e áreas claras */
+	--petroleo-luz: #9fd8da;        /* destaque claro sobre o petróleo profundo (títulos, ícones) */
+	/* as cinco cores dos eixos (aprovadas na 7.2) — também viram a faixa colorida da marca */
+	--eixo-1: #0d6e73;
+	--eixo-2: #326b73;
+	--eixo-3: #a8606b;
+	--eixo-4: #855665;
+	--eixo-5: #161218;
+	--raio: 1.25rem;
+	--raio-grande: 1.75rem;
+	--fio: #e6ded6;
+	--claro-sobre-tinta: #cfc8d3;
+
+	--fonte-titulo: "Plus Jakarta Sans", "Segoe UI", Arial, sans-serif;
+	--fonte: "Inter", "Segoe UI", Arial, sans-serif;
+
+	--t-h1: clamp(2.375rem, 1.55rem + 2.95vw, 4rem);          /* 38 → 64 */
+	--t-h2: clamp(2rem, 1.5rem + 1.75vw, 3rem);               /* 32 → 48 */
+	--t-manifesto: clamp(1.5rem, 1.1rem + 1.45vw, 2.25rem);   /* 24 → 36 */
+	--t-h3: clamp(1.3125rem, 1.2rem + 0.4vw, 1.5rem);         /* 21 → 24 */
+	--t-corpo: clamp(1.1875rem, 1.15rem + 0.15vw, 1.25rem);   /* 19 → 20 */
+	--t-apoio: 1.0625rem;                                      /* 17 */
+	--t-pequeno: 1rem;                                         /* 16, o mínimo */
+
+	--largura: 120rem;                                         /* 1920: sem teto prático; quem manda é a margem em % (18/11/2026) */
+	/* margem lateral: ~6% da tela do tablet para cima (16/11/2026 ele pediu "mais respiro" e foi a 10%;
+	   17/11/2026 pediu "menos preenchimento nas laterais": 6%, com o conteúdo até 1280 px);
+	   no celular, um pouco mais que antes sem apertar o texto */
+	--margem: clamp(1.25rem, 6vw, 2rem);
+	--cab-altura: 4.5rem;
+
+	--passar: 500ms;
+	--curva: cubic-bezier(0.22, 0.61, 0.36, 1);
+	--sombra: 0 1.5rem 3rem rgba(22, 18, 24, 0.18);
+
+	/* movimento (16/11/2026): lento, suave e claramente perceptível; hovers entre 500 e 750 ms */
+	--mov-hover: 650ms;    /* hover que move ou enche (botão, cartão, ícone, seta) */
+	--mov-lavar: 750ms;    /* cor do eixo escorrendo */
+	--mov-foto: 1600ms;    /* foto que se aproxima */
+	--mov-toque: 150ms;    /* toque (:active) */
+	--mov-entra: 1100ms;   /* deslocamento das entradas */
+	--mov-aparece: 750ms;  /* opacidade das entradas: o texto fica nítido antes de parar */
+	--mov-banner: 1300ms;
+	--mov-brota: 800ms;    /* ícone e ponto que brotam */
+	--mov-traco: 900ms;    /* faixa do eixo */
+	--mov-anel: 1600ms;    /* anel da marca se desenhando */
+	--mov-assenta: 2000ms; /* foto da abertura ao carregar */
+	--mov-onda: 1200ms;    /* halo único */
+	--curva-entra: cubic-bezier(0.5, 1, 0.89, 1);     /* a curva da onda dos eixos aprovada na 7.2 */
+	--curva-traco: cubic-bezier(0.65, 0, 0.35, 1);    /* linhas e anel que se desenham */
+	--curva-pouso: cubic-bezier(0.34, 1.36, 0.64, 1); /* passa ~5% e volta: só ícone, ponto, check e pino */
+	/* distâncias em px: com "Texto maior" cresce a letra, não o percurso */
+	--dist-texto: 56px;
+	--dist-cartao: 64px;
+	--dist-marco: 48px;
+	--dist-banner: 56px;
+	--dist-lado: 0px;
+	/* passos de sequência (o funções-global.js lê daqui) */
+	--passo-texto: 100ms;
+	--passo-cartao: 120ms;
+	--passo-icone: 100ms;
+	--passo-marco: 150ms;
+}
+
+@media (min-width: 48rem) {
+	:root {
+		--margem: 3.78vw; /* 3,5% + 8% = ~3,78% de cada lado (18/11/2026) */
+		--dist-texto: 72px;
+		--dist-cartao: 96px;
+		--dist-marco: 64px;
+		--dist-banner: 80px;
+	}
+}
+
+@media (min-width: 64rem) {
+	:root {
+		--dist-lado: 64px;
+		--margem: max(175px, 3.78vw); /* computador: no mínimo 175 px de cada lado (18/11/2026: "aumente mais um pouco") */
+	}
+}
+
+@media (min-width: 75rem) {
+	:root {
+		--cab-altura: 6rem;
+	}
+}
+
+/* "Texto maior": a página inteira cresce 20% (rem) */
+html.texto-maior {
+	font-size: 120%;
+}
+
+/* ---------- Base ---------- */
+html {
+	scroll-padding-top: calc(var(--cab-altura) + 1rem);
+	-webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+body {
+	background: var(--branco);
+	color: var(--tinta);
+	font-family: var(--fonte);
+	font-size: var(--t-corpo);
+	line-height: 1.6;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--fonte-titulo);
+	font-weight: 700;
+	line-height: 1.12;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+address {
+	font-style: normal;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+svg {
+	display: block;
+}
+
+:focus-visible {
+	outline: 3px solid var(--rosa-profundo);
+	outline-offset: 3px;
+}
+
+main:focus {
+	outline: none;
+}
+
+.conteudo {
+	width: min(100% - 2 * var(--margem), var(--largura));
+	margin-inline: auto;
+}
+
+/* trecho que não pode quebrar no fim da linha (ex.: o CEP com o hífen) */
+.sem-quebra {
+	white-space: nowrap;
+}
+
+.visualmente-oculto {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+.pular {
+	position: absolute;
+	left: 1rem;
+	top: -10rem;
+	z-index: 100;
+	padding: 0.9rem 1.4rem;
+	border-radius: 999px;
+	background: var(--tinta);
+	color: var(--branco);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.pular:focus {
+	top: 1rem;
+}
+
+/* ---------- Peças de texto comuns ---------- */
+
+/* rótulo: pequeno, em caixa alta, acima do título (como nos sites da Happy Web) */
+.rotulo {
+	margin: 0;
+	color: var(--rosa-profundo);
+	font-family: var(--fonte);
+	font-size: var(--t-pequeno);
+	font-weight: 700;
+	line-height: 1.3;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.rotulo--claro {
+	color: var(--petroleo-claro);
+}
+
+.titulo-secao {
+	font-size: var(--t-h2);
+	line-height: 1.1;
+}
+
+.destaque {
+	color: var(--petroleo);
+}
+
+/* a palavra-chave do título quebra como um bloco: nunca fica "Um" sozinho no fim da linha */
+.titulo-secao .destaque {
+	display: inline-block;
+}
+
+/* etiqueta de situação ("Em preparação", "A seguir") */
+.etiqueta {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.25rem;
+	margin: 0;
+	padding: 0.25rem 1rem;
+	border-radius: 999px;
+	background: var(--petroleo-claro);
+	color: var(--petroleo-escuro);
+	font-size: var(--t-pequeno);
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.etiqueta--contorno {
+	background: transparent;
+	box-shadow: inset 0 0 0 2px var(--petroleo);
+	color: var(--petroleo);
+}
+
+/* etiqueta sobre fundo escuro e lista com "check" (vieram do estilos.css: usadas na Home e nas internas) */
+.etiqueta--clara {
+	background: rgba(255, 255, 255, 0.14);
+	color: var(--branco);
+}
+
+/* lista com "check" */
+.lista-check {
+	display: grid;
+	gap: 0.75rem;
+	margin: 1.5rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.lista-check li {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1.75rem minmax(0, 1fr);
+	gap: 0.75rem;
+	align-items: start;
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1.45;
+	text-wrap: pretty;
+}
+
+/* o círculo (::before) e o traço do "check" (::after) são camadas separadas: na entrada, o círculo
+   brota e o traço se desenha da esquerda para a direita */
+.lista-check li::before {
+	content: "";
+	width: 1.75rem;
+	height: 1.75rem;
+	border-radius: 50%;
+	background: var(--petroleo);
+}
+
+.lista-check li::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1.75rem;
+	height: 1.75rem;
+	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 60% no-repeat;
+}
+
+.lista-check--clara li::before {
+	background: var(--branco);
+}
+
+.lista-check--clara li::after {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230d6e73' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E");
+}
+
+.link {
+	color: var(--petroleo);
+	font-weight: 600;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.22em;
+	transition: color var(--passar) var(--curva);
+}
+
+.link:hover {
+	color: var(--petroleo-escuro);
+}
+
+.link--claro {
+	color: var(--branco);
+}
+
+.link--claro:hover {
+	color: var(--petroleo-claro);
+}
+
+/* link sozinho na linha (fora de frase): alvo de toque de 48 px */
+.link--solto {
+	display: inline-flex;
+	align-items: center;
+	min-height: 3rem;
+}
+
+/* ---------- Botões ----------
+   Hover "preenchimento orgânico": um círculo nasce do canto de baixo à esquerda e enche o botão.
+   O texto nunca troca de cor, de lugar nem de rótulo. Com "menos movimento", só a cor de fundo muda. */
+.botao {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden; /* não corta o anel de foco (outline) do próprio botão */
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 3.5rem;
+	padding: 0.75rem 2rem;
+	border: 2px solid transparent;
+	border-radius: 999px;
+	font-family: var(--fonte);
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1.2;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color var(--passar) var(--curva), border-color var(--passar) var(--curva), scale var(--passar) var(--curva);
+}
+
+/* o círculo nasce em (20%, base) com raio 0,8 × largura + 1,25rem: cobre até o botão de 3 linhas;
+   curva simétrica, então encher e esvaziar têm o mesmo ritmo (~450 ms até cobrir o último canto).
+   Usa "transform" (todo navegador conhece): onde ele falta, o círculo nunca aparece parado. */
+.botao::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	left: 20%;
+	top: 100%;
+	width: calc(160% + 2.5rem);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--botao-enche, transparent);
+	transform: translate(-50%, -50%) scale(0);
+	pointer-events: none;
+	transition: transform var(--mov-hover) var(--curva-traco);
+}
+
+@media (min-width: 75rem) {
+	.botao {
+		min-height: 3.75rem;
+		font-size: 1.1875rem;
+	}
+}
+
+.botao--primario {
+	--botao-enche: var(--petroleo-profundo);
+	background: var(--petroleo);
+	color: var(--branco);
+}
+
+.botao--contorno {
+	--botao-enche: var(--petroleo-claro);
+	border-color: var(--tinta);
+	color: var(--tinta);
+}
+
+.botao--contorno:hover,
+.botao--contorno:focus-visible {
+	border-color: var(--petroleo);
+}
+
+.botao--claro {
+	--botao-enche: var(--petroleo-claro);
+	background: var(--branco);
+	color: var(--petroleo-escuro);
+}
+
+.botao--contorno-claro {
+	--botao-enche: rgba(255, 255, 255, 0.16);
+	border-color: rgba(255, 255, 255, 0.7);
+	color: var(--branco);
+}
+
+.botao--contorno-claro:hover,
+.botao--contorno-claro:focus-visible {
+	border-color: var(--branco);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.botao:focus-visible::before {
+		transform: translate(-50%, -50%) scale(1);
+	}
+
+	/* o toque aperta em 150 ms; ao soltar, volta no tempo normal */
+	.botao:active {
+		scale: 0.97;
+		transition-duration: var(--passar), var(--passar), var(--mov-toque);
+	}
+
+	.botao:active::before {
+		transform: translate(-50%, -50%) scale(1);
+		transition-duration: var(--mov-toque);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.botao:hover::before {
+		transform: translate(-50%, -50%) scale(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.botao--primario:hover {
+		background: var(--petroleo-escuro);
+	}
+
+	.botao--contorno:hover,
+	.botao--claro:hover {
+		background: var(--petroleo-claro);
+	}
+
+	.botao--contorno-claro:hover {
+		background: rgba(255, 255, 255, 0.12);
+	}
+}
+
+.botao--pequeno {
+	min-height: 3rem;
+	padding-inline: 1.5rem;
+	font-size: 1rem;
+}
+
+/* botão "A+ Texto maior" (cabeçalho e seção Tecnologia) */
+.botao-texto {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	min-height: 3rem;
+	padding: 0.4rem 1.1rem;
+	border: 2px solid var(--texto-2);
+	border-radius: 999px;
+	background: var(--branco);
+	color: var(--tinta);
+	font-family: var(--fonte);
+	font-size: var(--t-pequeno);
+	font-weight: 600;
+	line-height: 1;
+	cursor: pointer;
+	transition: border-color var(--passar) var(--curva), background-color var(--passar) var(--curva);
+}
+
+.botao-texto:hover {
+	border-color: var(--tinta);
+}
+
+/* ligado: o botão fica escuro e diz "A− Texto normal" */
+html.texto-maior .botao-texto {
+	border-color: var(--tinta);
+	background: var(--tinta);
+	color: var(--branco);
+}
+
+.botao-texto__a {
+	font-family: var(--fonte-titulo);
+	font-size: 1.125rem;
+	font-weight: 800;
+	letter-spacing: -0.02em;
+}
+
+.botao-texto--grande {
+	min-height: 3.25rem;
+	border-color: var(--tinta);
+	font-size: 1.0625rem;
+}
+
+/* botão Menu / Fechar */
+.botao-menu {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	min-height: 3rem;
+	padding: 0.4rem 1.2rem 0.4rem 1rem;
+	border: 0;
+	border-radius: 999px;
+	background: var(--petroleo);
+	color: var(--branco);
+	font-family: var(--fonte);
+	font-size: var(--t-pequeno);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.botao-menu__traços {
+	position: relative;
+	width: 1.125rem;
+	height: 0.75rem;
+}
+
+.botao-menu__traços::before,
+.botao-menu__traços::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 2px;
+	border-radius: 2px;
+	background: currentColor;
+}
+
+.botao-menu__traços::before {
+	top: 0;
+}
+
+.botao-menu__traços::after {
+	bottom: 0;
+}
+
+/* no "Fechar" os dois traços viram um X */
+.botao-menu--fechar .botao-menu__traços::before,
+.botao-menu--fechar .botao-menu__traços::after {
+	top: calc(50% - 1px);
+	bottom: auto;
+}
+
+.botao-menu--fechar .botao-menu__traços::before {
+	transform: rotate(45deg);
+}
+
+.botao-menu--fechar .botao-menu__traços::after {
+	transform: rotate(-45deg);
+}
+
+/* foto que aparece suavemente ao terminar de carregar: o funções-global.js marca "esperando" só nas
+   fotos que ainda não chegaram e tira a marca quando chegam (sem JavaScript, as fotos aparecem direto).
+   Reservado às páginas internas: na Home, a foto da abertura "assenta" pelo módulo 7 (Movimento). */
+.foto-entrada {
+	transition: opacity 600ms var(--curva);
+}
+
+.foto-entrada.esperando {
+	opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.foto-entrada {
+		transition: none;
+	}
+
+	.foto-entrada.esperando {
+		opacity: 1;
+	}
+}
+
+/* ---------- Cabeçalho ---------- */
+.cabecalho {
+	position: sticky;
+	top: 0;
+	z-index: 30;
+	background: var(--branco);
+	border-bottom: 1px solid var(--fio);
+}
+
+.cabecalho__dentro {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+	min-height: var(--cab-altura);
+}
+
+.cabecalho__marca {
+	flex: none;
+	display: block;
+	border-radius: 0.5rem;
+}
+
+.cabecalho__marca img {
+	width: auto;
+	height: 3.25rem;
+}
+
+@media (min-width: 75rem) {
+	.cabecalho__marca img {
+		height: 4.5rem;
+	}
+}
+
+.menu {
+	display: none;
+}
+
+.menu__lista {
+	display: flex;
+	align-items: center;
+	gap: 1.75rem;
+}
+
+.menu__lista a {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	min-height: 3rem;
+	color: var(--tinta);
+	font-size: 1.0625rem;
+	font-weight: 500;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: color var(--passar) var(--curva);
+}
+
+.menu__lista a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0.45rem;
+	height: 3px;
+	border-radius: 3px;
+	background: var(--petroleo);
+	transform: scaleX(0);
+	transform-origin: left; /* nasce e recolhe pela esquerda: sem salto quando o mouse passa rápido */
+	transition: transform 600ms var(--curva);
+}
+
+.menu__lista a:hover {
+	color: var(--petroleo);
+}
+
+.menu__lista a:hover::after,
+.menu__lista a:focus-visible::after,
+.menu__lista a[aria-current="page"]::after {
+	transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.menu__lista a::after {
+		transition: none;
+	}
+}
+
+.cabecalho__acoes {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin-left: auto;
+}
+
+.cabecalho__falar {
+	display: none;
+	white-space: nowrap;
+}
+
+/* celular: tudo cabe numa linha também em 320 px com "Texto maior" */
+@media (max-width: 47.99rem) {
+	.cabecalho__dentro {
+		gap: 0.75rem;
+	}
+
+	.cabecalho__acoes {
+		gap: 0.5rem;
+	}
+
+	.cabecalho__marca img {
+		height: 2.75rem;
+	}
+
+	.cabecalho .botao-menu {
+		padding-inline: 0.85rem 0.95rem;
+	}
+}
+
+@media (max-width: 22.49rem) {
+	.cabecalho__marca img {
+		height: 2.5rem;
+	}
+}
+
+/* celular: "A+" em círculo, sem a palavra */
+.cabecalho .botao-texto {
+	min-width: 3rem;
+	padding-inline: 0.7rem;
+	justify-content: center;
+}
+
+.cabecalho .botao-texto__rotulo {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+@media (min-width: 48rem) {
+	.cabecalho .botao-texto {
+		padding-inline: 1.1rem;
+	}
+
+	.cabecalho .botao-texto__rotulo {
+		position: static;
+		width: auto;
+		height: auto;
+		overflow: visible;
+		clip: auto;
+	}
+}
+
+/* computador: menu completo (com "Texto maior" ligado o menu não cabe e volta a versão compacta).
+   Com a margem de 175 px o menu inteiro cabe numa linha a partir de ~1410 px (88 rem). */
+@media (min-width: 88rem) {
+	html:not(.texto-maior) .menu {
+		display: block;
+		margin-left: 1rem;
+	}
+
+	html:not(.texto-maior) .cabecalho__falar {
+		display: inline-flex;
+		min-height: 3.25rem;
+		padding-inline: 1.5rem;
+		font-size: 1.0625rem;
+	}
+
+	html:not(.texto-maior) .cabecalho .botao-menu {
+		display: none;
+	}
+}
+
+/* ---------- Painel do menu ---------- */
+.painel {
+	position: fixed;
+	inset: 0;
+	z-index: 50;
+	overflow-y: auto;
+	background: var(--papel);
+	opacity: 0;
+	transition: opacity 200ms linear;
+}
+
+.painel.painel--aberto {
+	opacity: 1;
+}
+
+.painel__topo {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: var(--cab-altura);
+}
+
+.painel__menu {
+	padding-block: 1.5rem 3rem;
+}
+
+.painel__menu ul {
+	border-top: 1px solid var(--fio);
+}
+
+.painel__menu li a {
+	display: flex;
+	align-items: center;
+	min-height: 4rem;
+	border-bottom: 1px solid var(--fio);
+	color: var(--tinta);
+	font-family: var(--fonte-titulo);
+	font-size: 1.5rem;
+	font-weight: 700;
+	text-decoration: none;
+}
+
+.painel__menu li a[aria-current="page"] {
+	color: var(--petroleo);
+}
+
+.painel__falar {
+	width: 100%;
+	margin-top: 2rem;
+}
+
+.painel__endereco {
+	margin-top: 1.5rem;
+	color: var(--texto-2);
+	font-size: var(--t-apoio);
+	line-height: 1.55;
+}
+
+body.sem-rolagem {
+	overflow: hidden;
+}
+
+/* ---------- Rodapé ---------- */
+.rodape {
+	padding-block: 4rem 2.5rem;
+	background: var(--petroleo-profundo);
+	color: var(--branco);
+}
+
+.rodape__grade {
+	display: grid;
+	gap: 2.5rem;
+}
+
+.rodape__marca img {
+	width: auto;
+	height: 6rem;
+}
+
+.rodape__marca p {
+	max-width: 18rem;
+	margin-top: 1.25rem;
+	color: var(--petroleo-claro);
+	font-size: var(--t-apoio);
+	line-height: 1.5;
+}
+
+.rodape__titulo {
+	margin-bottom: 0.75rem;
+	font-size: 1.125rem;
+	letter-spacing: 0;
+}
+
+.rodape__menu a {
+	display: flex;
+	align-items: center;
+	min-height: 2.75rem;
+	color: var(--branco);
+	font-size: 1.125rem;
+	text-decoration: none;
+	transition: color var(--passar) var(--curva);
+}
+
+.rodape__menu a:hover,
+.rodape__menu a:focus-visible {
+	color: var(--petroleo-claro);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.rodape__menu a:hover {
+		text-decoration: underline;
+		text-underline-offset: 0.25em;
+	}
+}
+
+.rodape__sede {
+	display: flex;
+	gap: 0.85rem;
+	align-items: flex-start;
+	margin-bottom: 1.25rem;
+	font-size: 1.125rem;
+	line-height: 1.55;
+}
+
+.rodape__sede svg {
+	flex: none;
+	width: 1.375rem;
+	height: 1.375rem;
+	margin-top: 0.15rem;
+	color: var(--petroleo-claro);
+}
+
+.rodape__base {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.5rem 2rem;
+	margin-top: 3.5rem;
+	padding-top: 1.75rem;
+	color: var(--petroleo-claro);
+	font-size: var(--t-pequeno);
+}
+
+/* o fio de cima da base (vira traço que se desenha na entrada) */
+.rodape__base::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: rgba(255, 255, 255, 0.18);
+	transform-origin: left;
+}
+
+/* folga no celular: o aviso e o "voltar ao topo" nunca cobrem o último texto */
+@media (max-width: 47.99rem) {
+	.rodape {
+		padding-bottom: 8rem;
+	}
+}
+
+@media (min-width: 64rem) {
+	.rodape {
+		padding-top: 6rem;
+	}
+
+	.rodape__grade {
+		grid-template-columns: 5fr 3fr 4fr;
+		gap: 2rem;
+	}
+
+	.rodape__marca img {
+		height: 7.5rem;
+	}
+}
+
+.rodape :focus-visible {
+	outline-color: var(--branco);
+}
+
+/* ---------- WhatsApp (igual ao do site da Happy Web: círculo verde de 65 px, sombra, selo vermelho "1") ---------- */
+.whatsapp {
+	position: fixed;
+	right: 15px;
+	bottom: 15px;
+	z-index: 25;
+	display: block;
+	width: 65px;
+	height: 65px;
+	padding: 15px;
+	border-radius: 50%;
+	background: #25d366;
+	box-shadow: 0 0 11px rgba(0, 0, 0, 0.5);
+	cursor: pointer;
+}
+
+.whatsapp svg {
+	display: block;
+	width: 35px;
+	height: 35px;
+	pointer-events: none;
+}
+
+.whatsapp__selo {
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	width: 22px;
+	height: 22px;
+	border-radius: 50%;
+	background: #ff4c4c;
+	color: #fff;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1;
+}
+
+.whatsapp:focus-visible {
+	outline: 3px solid var(--tinta);
+	outline-offset: 3px;
+}
+
+/* entrada igual à do original: o círculo cresce a partir do canto e o selo dá um pulinho */
+@media (prefers-reduced-motion: no-preference) {
+	.whatsapp {
+		transform-origin: bottom right;
+		animation: whatsapp-entra 0.4s cubic-bezier(0.25, 1, 0.5, 1) both;
+	}
+
+	.whatsapp__selo {
+		animation: whatsapp-selo 0.45s ease-out both;
+	}
+}
+
+@keyframes whatsapp-entra {
+	0% { opacity: 0; transform: scale(0); }
+	100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes whatsapp-selo {
+	0% { opacity: 0; transform: scale(0); }
+	60% { opacity: 1; transform: scale(1.3); }
+	100% { opacity: 1; transform: scale(1); }
+}
+
+/* com o aviso de privacidade aberto, o WhatsApp sobe junto com o "voltar ao topo" */
+.com-aviso .whatsapp {
+	bottom: calc(var(--aviso-altura, 8.5rem) + 15px);
+}
+
+/* ---------- Voltar ao topo ---------- */
+.voltar-topo {
+	position: fixed;
+	right: calc(15px + (65px - 3.5rem) / 2);
+	bottom: calc(15px + 65px + 0.75rem);
+	z-index: 25;
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: var(--petroleo);
+	color: var(--branco);
+	box-shadow: 0 0.5rem 1.25rem rgba(22, 18, 24, 0.2);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 300ms linear, visibility 0s linear 300ms, background-color var(--passar) var(--curva);
+}
+
+.voltar-topo.visivel {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 300ms linear, background-color var(--passar) var(--curva);
+}
+
+.voltar-topo:hover {
+	background: var(--petroleo-escuro);
+}
+
+.voltar-topo svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+/* enquanto o aviso estiver aberto: o botão fica acima dele (o JS mede a altura do aviso) e a rolagem
+   reserva essa altura, para o item com foco do teclado nunca ficar escondido atrás da barra */
+.com-aviso .voltar-topo {
+	bottom: calc(var(--aviso-altura, 8.5rem) + 15px + 65px + 0.75rem);
+}
+
+html.com-aviso {
+	scroll-padding-bottom: calc(var(--aviso-altura, 8.5rem) + 1rem);
+}
+
+/* ---------- Aviso de privacidade ---------- */
+.aviso-privacidade {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 26;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 0.75rem 1.5rem;
+	padding: 1rem var(--margem);
+	background: var(--tinta);
+	color: var(--branco);
+	font-size: var(--t-pequeno);
+	line-height: 1.5;
+}
+
+.aviso-privacidade p {
+	max-width: 48rem;
+}
+
+.aviso-privacidade :focus-visible {
+	outline-color: var(--branco);
+}
+
+/* =====================================================================
+   MOVIMENTO (comum a todas as páginas)
+   O motor está no funções-global.js (módulo 7). As peças que entram na rolagem levam a classe
+   "hw-entra" + o tipo; as que acompanham a rolagem levam "hw-segue" + o efeito (CSS de cada página).
+   Só existe estado escondido com html.mov, que o preferencias.js põe quando o aparelho aceita movimento
+   (e tira sozinho se o funções-global.js não chegar em 2,5 s). Sem JavaScript, impresso ou com
+   "menos movimento", tudo aparece parado e completo.
+   ===================================================================== */
+@keyframes mov-desloca {
+	from {
+		translate: var(--de-x, 0) var(--de-y, 0);
+	}
+}
+
+@keyframes mov-surge {
+	from {
+		opacity: 0;
+	}
+}
+
+@keyframes mov-brota {
+	from {
+		opacity: 0;
+		scale: var(--de-escala, 0.6);
+	}
+}
+
+@keyframes mov-traca-x {
+	from {
+		scale: 0 1;
+	}
+}
+
+@keyframes mov-pulo {
+	40% {
+		scale: 1.3;
+	}
+}
+
+@keyframes mov-painel {
+	from {
+		opacity: 0;
+		translate: 0 24px;
+	}
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+	/* de onde cada tipo vem */
+	html.mov .hw-entra--texto,
+	html.mov .hw-entra--esq,
+	html.mov .hw-entra--dir {
+		--de-y: var(--dist-texto);
+	}
+
+	html.mov .hw-entra--cartao {
+		--de-y: var(--dist-cartao);
+	}
+
+	html.mov .hw-entra--marco {
+		--de-y: var(--dist-marco);
+	}
+
+	/* par lateral (só no computador; abaixo disso sobe como texto) */
+	@media (min-width: 64rem) {
+		html.mov .hw-entra--esq {
+			--de-x: calc(-1 * var(--dist-lado));
+			--de-y: 0px;
+		}
+
+		html.mov .hw-entra--dir {
+			--de-x: var(--dist-lado);
+			--de-y: 0px;
+		}
+	}
+
+	/* antes de entrar */
+	html.mov :is(.hw-entra--texto, .hw-entra--cartao, .hw-entra--marco, .hw-entra--esq, .hw-entra--dir):not(.entrou) {
+		opacity: 0;
+		translate: var(--de-x, 0) var(--de-y, 0);
+	}
+
+	html.mov .hw-entra--icone:not(.entrou) {
+		opacity: 0;
+		scale: var(--de-escala, 0.6);
+	}
+
+	/* a entrada (por animation: o atraso da escada não vaza para o hover) */
+	html.mov :is(.hw-entra--texto, .hw-entra--cartao, .hw-entra--marco, .hw-entra--esq, .hw-entra--dir).entrou {
+		animation:
+			mov-desloca var(--mov-entra) var(--curva-entra) var(--atraso, 0ms) backwards,
+			mov-surge var(--mov-aparece) var(--curva-entra) var(--atraso, 0ms) backwards;
+	}
+
+	html.mov .hw-entra--icone.entrou {
+		animation: mov-brota var(--mov-brota) var(--curva-pouso) var(--atraso, 0ms) backwards;
+	}
+
+	/* o que já tinha passado (âncora, barra arrastada, foco do teclado) aparece sem animar */
+	html.mov .mov-ja,
+	html.mov .mov-ja *,
+	html.mov .mov-ja::before,
+	html.mov .mov-ja::after,
+	html.mov .mov-ja *::before,
+	html.mov .mov-ja *::after {
+		animation: none !important;
+	}
+
+	/* reforço: um item escondido que recebe foco aparece na hora */
+	html.mov .hw-entra:not(.entrou):focus-within {
+		opacity: 1;
+		translate: none;
+		scale: none;
+	}
+
+	/* ---- cabeçalho: a sombra aparece e some sem transição (18/11/2026). Com o fade de opacidade, o
+	   navegador guardava uma faixa velha de 24 px logo abaixo do cabeçalho ao voltar ao topo ---- */
+
+	/* "A+": a letra cresce no hover/foco; ao clicar, os sinais dão um pulo de confirmação */
+	.botao-texto__a {
+		transition: scale var(--passar) var(--curva);
+	}
+
+	.botao-texto:focus-visible .botao-texto__a {
+		scale: 1.15;
+	}
+
+	.botao-menu:not(.botao-menu--fechar):focus-visible .botao-menu__traços::before {
+		translate: 0 -2px;
+	}
+
+	.botao-menu:not(.botao-menu--fechar):focus-visible .botao-menu__traços::after {
+		translate: 0 2px;
+	}
+
+	.pulou {
+		animation: mov-pulo 600ms var(--curva-pouso);
+	}
+
+	.botao-texto:active,
+	.botao-menu:active {
+		scale: 0.94;
+	}
+
+	.botao-texto,
+	.botao-menu {
+		transition: border-color var(--passar) var(--curva), background-color var(--passar) var(--curva), scale var(--mov-toque) var(--curva);
+	}
+
+	.botao-menu__traços::before,
+	.botao-menu__traços::after {
+		transition: translate var(--passar) var(--curva);
+	}
+
+	/* ---- painel do menu: abre em 300 ms com os itens subindo um a um; fecha em 200 ms ---- */
+	.painel {
+		transition-duration: 300ms;
+	}
+
+	.painel:not(.painel--aberto) {
+		transition-duration: 200ms;
+	}
+
+	.painel--aberto .painel__menu li,
+	.painel--aberto .painel__falar {
+		animation: mov-painel 500ms var(--curva-entra) backwards;
+	}
+
+	.painel--aberto .painel__menu li:nth-child(2) { animation-delay: 60ms; }
+	.painel--aberto .painel__menu li:nth-child(3) { animation-delay: 120ms; }
+	.painel--aberto .painel__menu li:nth-child(4) { animation-delay: 180ms; }
+	.painel--aberto .painel__menu li:nth-child(5) { animation-delay: 240ms; }
+	.painel--aberto .painel__falar { animation-delay: 300ms; }
+
+	/* ---- voltar ao topo: aparece subindo; a seta sobe no hover ---- */
+	.voltar-topo {
+		translate: 0 16px;
+		transition: opacity var(--passar) var(--curva), visibility 0s linear var(--passar), background-color var(--passar) var(--curva), translate var(--passar) var(--curva);
+	}
+
+	.voltar-topo.visivel {
+		translate: 0 0;
+		transition: opacity var(--passar) var(--curva), background-color var(--passar) var(--curva), translate var(--passar) var(--curva);
+	}
+
+	.voltar-topo svg {
+		transition: translate var(--passar) var(--curva);
+	}
+
+	.voltar-topo:focus-visible svg {
+		translate: 0 -4px;
+	}
+
+	/* ---- rodapé: o link desliza e um traço se desenha onde o texto estava ---- */
+	.rodape__menu a {
+		position: relative;
+		transition: color var(--passar) var(--curva), translate 600ms var(--curva);
+	}
+
+	.rodape__menu a::before {
+		content: "";
+		position: absolute;
+		top: calc(50% - 1px);
+		left: -10px;
+		width: 8px;
+		height: 2px;
+		border-radius: 2px;
+		background: var(--petroleo-claro);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 600ms var(--curva);
+	}
+
+	.rodape__menu a:focus-visible {
+		translate: 10px 0;
+	}
+
+	.rodape__menu a:focus-visible::before {
+		transform: none;
+	}
+
+	.rodape .link--solto {
+		transition: color var(--passar) var(--curva), text-decoration-thickness var(--passar) var(--curva), text-underline-offset var(--passar) var(--curva);
+	}
+
+	.rodape .link--solto:focus-visible {
+		text-decoration-thickness: 4px;
+		text-underline-offset: 0.32em;
+	}
+
+	/* fio da base do rodapé se desenha da esquerda */
+	html.mov .hw-entra--fio:not(.entrou)::before {
+		scale: 0 1;
+	}
+
+	html.mov .hw-entra--fio.entrou::before {
+		animation: mov-traca-x 1400ms var(--curva-traco) backwards;
+	}
+}
+
+/* hovers que deslocam ou escalam: só com mouse (toque não deixa nada "grudado") */
+@media screen and (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.botao-texto:hover .botao-texto__a {
+		scale: 1.15;
+	}
+
+	.botao-menu:not(.botao-menu--fechar):hover .botao-menu__traços::before {
+		translate: 0 -2px;
+	}
+
+	.botao-menu:not(.botao-menu--fechar):hover .botao-menu__traços::after {
+		translate: 0 2px;
+	}
+
+	.voltar-topo:hover svg {
+		translate: 0 -4px;
+	}
+
+	.rodape__menu li:hover > a {
+		translate: 10px 0;
+	}
+
+	.rodape__menu li:hover > a::before {
+		transform: none;
+	}
+
+	.rodape .link--solto:hover {
+		text-decoration-thickness: 4px;
+		text-underline-offset: 0.32em;
+	}
+}
+
+/* valores padrão dos efeitos que acompanham a rolagem (cada página ajusta na classe da peça;
+   o funções-global.js lê daqui ao medir) */
+.hw-segue {
+	--segue-amp: 120;
+	--segue-dist: 480;
+	--segue-de: 1;
+	--segue-ate: 0.55;
+}
+
+/* sombra do cabeçalho e anel de progresso do "voltar ao topo" (informação: valem também com
+   "menos movimento"; o funções-global.js, módulo 4, cuida das duas) */
+.cabecalho::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	height: 1.5rem;
+	background: linear-gradient(rgba(11, 63, 66, 0.1), rgba(11, 63, 66, 0));
+	opacity: 0;
+	pointer-events: none;
+}
+
+.cabecalho--rolado::after {
+	opacity: 1;
+}
+
+.voltar-topo::before {
+	content: "";
+	position: absolute;
+	inset: 4px;
+	border-radius: 50%;
+	background: conic-gradient(var(--branco) calc(var(--progresso, 0) * 360deg), rgba(255, 255, 255, 0.25) 0);
+	-webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px));
+	mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2.5px));
+	pointer-events: none;
+}

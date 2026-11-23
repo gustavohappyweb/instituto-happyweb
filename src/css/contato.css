@@ -1,0 +1,411 @@
+/* =====================================================================
+   CONTATO — seções próprias desta página (18/11/2026)
+   As peças comuns (abertura, ficha, foto com arco, faixa final) estão no paginas.css.
+   Os canais oficiais ainda não foram definidos: a página não tem formulário e não promete envio.
+   ===================================================================== */
+
+/* ---------- 1. Canais oficiais: cartão branco que morde o arco da abertura ----------
+   É a primeira resposta da página ("como falo com vocês?"), por isso fica no lugar do "Nesta página".
+   Sem lista de canais: só o balão de conversa, o título e o aviso, numa linha só no computador.
+   Quando o cliente confirmar os canais, eles entram na coluna do texto. */
+.canais {
+	position: relative;
+	z-index: 2;
+	margin-top: -4rem;
+}
+
+.canais__cartao {
+	display: grid;
+	gap: 1.25rem;
+	padding: 2rem 1.5rem;
+	border-radius: var(--raio-grande);
+	background: var(--branco);
+	box-shadow: var(--sombra);
+}
+
+.canais__icone {
+	display: grid;
+	place-items: center;
+	width: 4.25rem;
+	height: 4.25rem;
+	border-radius: 50%;
+	background: var(--petroleo-suave);
+	color: var(--petroleo);
+}
+
+.canais__icone svg {
+	width: 2rem;
+	height: 2rem;
+}
+
+.canais__cabeca .titulo-secao {
+	margin-top: 0.75rem;
+	font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+}
+
+.canais__texto p {
+	max-width: 34rem;
+	margin: 0;
+	color: var(--texto-2);
+}
+
+.canais__texto p + p {
+	margin-top: 0.85rem;
+}
+
+/* a seção seguinte sobe por baixo do cartão, como depois do "Nesta página" */
+.canais + .secao {
+	margin-top: -3rem;
+	padding-top: 7.5rem;
+}
+
+/* tablet: o balão à esquerda, título e aviso empilhados ao lado */
+@media (min-width: 48rem) {
+	.canais__cartao {
+		grid-template-columns: 5.5rem minmax(0, 1fr);
+		column-gap: 2rem;
+		row-gap: 1.25rem;
+		padding: 2.5rem;
+	}
+
+	.canais__icone {
+		grid-row: 1 / span 2;
+		width: 5.5rem;
+		height: 5.5rem;
+	}
+
+	.canais__icone svg {
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+
+	.canais__cabeca,
+	.canais__texto {
+		grid-column: 2;
+	}
+}
+
+@media (min-width: 64rem) {
+	.canais {
+		margin-top: -5rem;
+	}
+
+	.canais__cartao {
+		padding: 3rem 3.5rem;
+	}
+
+	.canais + .secao {
+		margin-top: -4rem;
+		padding-top: 10rem;
+	}
+}
+
+/* computador largo: uma linha só — balão, título e, depois de um fio, o aviso
+   (a 1024 px a coluna de conteúdo é estreita por causa da margem de 175 px; lá fica o arranjo do tablet) */
+@media (min-width: 80rem) {
+	.canais__cartao {
+		grid-template-columns: 6.5rem minmax(0, 1.15fr) minmax(0, 1fr);
+		column-gap: 3rem;
+		align-items: center;
+	}
+
+	.canais__icone {
+		grid-row: auto;
+		width: 6.5rem;
+		height: 6.5rem;
+	}
+
+	.canais__icone svg {
+		width: 3rem;
+		height: 3rem;
+	}
+
+	.canais__cabeca {
+		grid-column: 2;
+	}
+
+	.canais__texto {
+		grid-column: 3;
+		padding-left: 3rem;
+		border-left: 1px solid var(--fio);
+	}
+}
+
+/* ---------- 2. Informações institucionais: foto à esquerda (arco no lado do texto) + ficha ---------- */
+.institucional__grade {
+	display: grid;
+	gap: 2.5rem;
+	align-items: center;
+}
+
+/* celular e tablet: a foto inteira (3:2, a proporção original), sem recorte —
+   no recorte 4:3 a mulher da esquerda perdia metade do rosto na borda (19/11/2026) */
+.institucional__foto img {
+	aspect-ratio: 3 / 2;
+}
+
+.institucional__ficha {
+	margin-top: 2rem;
+}
+
+.institucional__endereco {
+	font-style: normal;
+}
+
+@media (min-width: 64rem) {
+	.institucional__grade {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: 4.5rem;
+	}
+
+	/* a foto encosta na borda esquerda da tela (espelho da Apresentação de "O Instituto") */
+	.institucional__foto {
+		margin-left: calc(-1 * var(--margem));
+		align-self: stretch;
+	}
+
+	.institucional__foto img {
+		aspect-ratio: auto;
+		min-height: 30rem;
+	}
+
+	/* coluna mais estreita: rótulo em cima do valor, para o endereço não quebrar em quatro linhas */
+	.institucional__ficha .ficha__linha {
+		grid-template-columns: none;
+		gap: 0.2rem;
+	}
+}
+
+/* ---------- 3. "Talvez a sua resposta já esteja no site": caminhos em cartões brancos ---------- */
+.caminhos__grade {
+	display: grid;
+	gap: 2.5rem;
+}
+
+.caminhos__cabeca .titulo-secao {
+	margin-top: 0.75rem;
+}
+
+.caminhos__lista {
+	display: grid;
+	gap: 1rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* celular: ícone ao lado do nome, um caminho por linha (alvo grande e fácil de tocar) */
+.caminho {
+	position: relative;
+	display: grid;
+	grid-template-columns: 3.5rem minmax(0, 1fr) 1.25rem;
+	gap: 0.85rem;
+	align-items: center;
+	height: 100%;
+	padding: 1.25rem 1rem 1.25rem 1.1rem;
+	border-radius: var(--raio);
+	background: var(--branco);
+	box-shadow: 0 1rem 2.25rem rgba(11, 63, 66, 0.12);
+	color: var(--tinta);
+	text-decoration: none;
+	transition: translate var(--mov-hover) var(--curva), box-shadow var(--mov-hover) var(--curva);
+}
+
+/* o ícone como nos atalhos da Home: círculo claro que se enche de petróleo no hover e no foco */
+.caminho__icone {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: var(--petroleo-suave);
+	color: var(--petroleo);
+	transition: color 400ms var(--curva) 150ms;
+}
+
+.caminho__icone::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: var(--petroleo);
+	transform: translateY(101%);
+	transition: transform 600ms var(--curva);
+}
+
+.caminho__icone svg {
+	width: 1.75rem;
+	height: 1.75rem;
+}
+
+.caminho__texto {
+	display: grid;
+	gap: 0.3rem;
+}
+
+.caminho__nome {
+	font-family: var(--fonte-titulo);
+	font-size: var(--t-h3);
+	font-weight: 700;
+	line-height: 1.2;
+	overflow-wrap: break-word;
+	hyphens: auto;
+}
+
+.caminho__descricao {
+	font-size: var(--t-apoio);
+	line-height: 1.45;
+	color: var(--texto-2);
+	text-wrap: pretty;
+}
+
+.caminho__seta {
+	color: var(--petroleo);
+	transition: translate var(--mov-hover) var(--curva);
+}
+
+.caminho__seta svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.caminho:focus-visible {
+	outline: 3px solid var(--rosa-profundo);
+	outline-offset: 3px;
+}
+
+.caminho:focus-visible .caminho__icone {
+	color: var(--branco);
+}
+
+.caminho:focus-visible .caminho__icone::before {
+	transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.caminho:hover .caminho__icone {
+		color: var(--branco);
+	}
+
+	.caminho:hover .caminho__icone::before {
+		transform: none;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.caminho:hover {
+		translate: 0 -6px;
+		box-shadow: var(--sombra);
+	}
+
+	.caminho:hover .caminho__seta {
+		translate: 4px 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.caminho__icone,
+	.caminho__icone::before {
+		transition: none;
+	}
+}
+
+/* celular pequeno (até 383 px): ícone e folgas menores, para o texto não ficar espremido */
+@media (max-width: 23.99rem) {
+	.caminho {
+		grid-template-columns: 2.75rem minmax(0, 1fr) 1.25rem;
+		gap: 0.6rem;
+		padding: 1.1rem 0.85rem 1.1rem 0.9rem;
+	}
+
+	.caminho__icone {
+		width: 2.75rem;
+		height: 2.75rem;
+	}
+
+	.caminho__icone svg {
+		width: 1.4rem;
+		height: 1.4rem;
+	}
+
+	.caminho__seta svg {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	.canais__cartao {
+		padding: 1.75rem 1.25rem;
+	}
+
+	.canais__icone {
+		width: 3.5rem;
+		height: 3.5rem;
+	}
+
+	.canais__icone svg {
+		width: 1.6rem;
+		height: 1.6rem;
+	}
+}
+
+/* tablet: dois por linha, ícone em cima (como os atalhos da Home) */
+@media (min-width: 48rem) {
+	.caminhos__lista {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1.25rem;
+	}
+
+	.caminho {
+		grid-template-columns: minmax(0, 1fr) 1.5rem;
+		grid-template-rows: auto 1fr;
+		align-items: start;
+		gap: 1.1rem 1rem;
+		padding: 1.75rem 1.75rem 1.75rem;
+	}
+
+	.caminho__icone {
+		grid-column: 1;
+	}
+
+	.caminho__seta {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: center;
+	}
+
+	.caminho__texto {
+		grid-column: 1 / -1;
+	}
+}
+
+/* computador: a pergunta à esquerda, os quatro caminhos à direita */
+@media (min-width: 64rem) {
+	.caminhos__grade {
+		grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+		gap: 5rem;
+		align-items: center;
+	}
+}
+
+/* ---------- "Texto maior" no computador estreito (1024 a 1279 px) ----------
+   Com a letra maior e a margem de 175 px, as duas colunas ficavam espremidas (palavras quebradas
+   em sílabas e a foto reduzida a uma faixa). Nessa faixa as seções voltam ao arranjo do tablet. */
+@media (min-width: 64rem) and (max-width: 79.99rem) {
+	html.texto-maior .institucional__grade,
+	html.texto-maior .caminhos__grade {
+		grid-template-columns: none;
+		gap: 2.5rem;
+	}
+
+	html.texto-maior .institucional__foto {
+		margin-left: 0;
+	}
+
+	html.texto-maior .institucional__foto img {
+		aspect-ratio: 3 / 2;
+		min-height: 0;
+	}
+}

@@ -1,0 +1,338 @@
+/* =====================================================================
+   POLÍTICA DE PRIVACIDADE — seções próprias (18/11/2026; a 404 saiu para o 404.css em 19/11)
+   As peças comuns (abertura, "Nesta página", ficha, nota, faixa final) estão no paginas.css.
+   Texto longo para ler com calma: coluna de leitura de ~42rem; no computador, o índice fica ao lado
+   e acompanha a rolagem; no celular, o índice é o cartão branco que morde o arco da abertura.
+   ===================================================================== */
+
+/* ---------- 1. Grade de leitura ---------- */
+.politica {
+	position: relative;
+	z-index: 2;
+	display: grid;
+	/* minmax(0, 1fr): nenhum item largo empurra a coluna para fora da margem do celular */
+	grid-template-columns: minmax(0, 1fr);
+	gap: 3rem;
+	margin-top: -4rem;
+	padding-bottom: 4.5rem;
+}
+
+.politica__texto {
+	max-width: 42rem;
+}
+
+/* ---------- 2. Índice ("Nesta página") ---------- */
+/* folga menor no celular estreito: com "Texto maior" a 320 px, a pílula mais longa ("Preferência…")
+   precisa de ~232 px e não cabia com 1.5rem de cada lado */
+.politica__indice-cartao {
+	padding: clamp(1rem, 5vw, 1.5rem);
+}
+
+.politica__indice-lista a {
+	text-align: left;
+}
+
+/* a seta não encolhe quando o nome quebra em duas ou três linhas (celular estreito com "Texto maior") */
+.politica__indice-lista a::after {
+	flex: none;
+}
+
+@media (min-width: 64rem) {
+	.politica {
+		margin-top: -5rem;
+	}
+
+	/* o paginas.css põe o cartão do "Nesta página" em duas colunas no computador: aqui ele segue empilhado */
+	.politica__indice-cartao.sumario__cartao {
+		display: block;
+		padding: 1.75rem 2.25rem;
+	}
+
+	.politica__indice-lista {
+		margin-top: 1rem;
+	}
+}
+
+/* computador largo: índice ao lado, acompanhando a rolagem */
+@media (min-width: 75rem) {
+	.politica {
+		grid-template-columns: minmax(15rem, 19rem) minmax(0, 42rem);
+		gap: clamp(3rem, 6vw, 6rem);
+		align-items: start;
+		padding-bottom: 6.5rem;
+	}
+
+	.politica__indice {
+		position: sticky;
+		top: calc(var(--cab-altura) + 1.5rem);
+	}
+
+	.politica__indice-cartao.sumario__cartao {
+		max-height: calc(100vh - var(--cab-altura) - 3rem);
+		overflow-y: auto;
+		padding: 1.75rem 1.5rem;
+	}
+
+	/* no índice lateral, uma linha por assunto (fica fácil achar onde se está) */
+	.politica__indice-lista {
+		flex-direction: column;
+		flex-wrap: nowrap;
+		gap: 0.35rem;
+	}
+
+	.politica__indice-lista a {
+		display: flex;
+		width: 100%;
+		border-radius: var(--raio);
+		background: transparent;
+		padding: 0.55rem 0.85rem;
+	}
+
+	/* a seta para baixo sempre no canto direito, alinhada em todas as linhas */
+	.politica__indice-lista a::after {
+		margin-left: auto;
+	}
+
+	.politica__indice-lista a:focus-visible {
+		background: var(--petroleo-suave);
+		color: var(--petroleo-escuro);
+	}
+
+	.politica__indice-lista a:focus-visible .sumario__num {
+		color: var(--petroleo);
+	}
+
+	/* a coluna de texto começa abaixo do arco da abertura */
+	.politica__texto {
+		padding-top: 7.5rem;
+	}
+}
+
+/* passar o mouse no índice lateral (só em aparelho com mouse: no toque o realce ficaria preso) */
+@media (min-width: 75rem) and (hover: hover) and (pointer: fine) {
+	.politica__indice-lista a:hover {
+		background: var(--petroleo-suave);
+		color: var(--petroleo-escuro);
+	}
+
+	.politica__indice-lista a:hover .sumario__num {
+		color: var(--petroleo);
+	}
+}
+
+/* ---------- 3. Minuta (situação do texto) ---------- */
+.politica__minuta {
+	margin-top: 0;
+}
+
+/* ---------- 4. Cada assunto da política ---------- */
+.politica__bloco {
+	padding-block: 2.75rem;
+	border-bottom: 1px solid var(--fio);
+}
+
+.politica__bloco:last-child {
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
+.politica__bloco > p,
+.politica__direitos > p {
+	margin: 1.25rem 0 0;
+	color: var(--texto-2);
+}
+
+.politica__cabeca {
+	display: grid;
+	grid-template-columns: 3.5rem minmax(0, 1fr);
+	gap: 1rem;
+	align-items: center;
+}
+
+.politica__icone {
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: var(--petroleo-suave);
+	color: var(--petroleo);
+}
+
+.politica__icone svg {
+	width: 1.6rem;
+	height: 1.6rem;
+}
+
+.politica__icone--cheio {
+	background: var(--petroleo);
+	color: var(--branco);
+}
+
+.politica__num {
+	display: block;
+	font-family: var(--fonte-titulo);
+	font-size: var(--t-pequeno);
+	font-weight: 800;
+	line-height: 1.2;
+	color: var(--rosa-profundo);
+}
+
+.politica__titulo {
+	margin: 0.1rem 0 0;
+	font-size: clamp(1.5rem, 1.3rem + 0.7vw, 1.875rem);
+}
+
+.politica__subtitulo {
+	margin: 2.25rem 0 1rem;
+	font-size: var(--t-h3);
+}
+
+/* a primeira frase de quem é o responsável, um pouco maior: é a identificação de quem responde pelo site */
+.politica__abre {
+	font-size: clamp(1.25rem, 1.15rem + 0.35vw, 1.4375rem);
+	line-height: 1.55;
+}
+
+.politica__bloco > .politica__abre {
+	color: var(--tinta);
+}
+
+/* etiqueta logo abaixo do título ("Em preparação"): a mesma etiqueta preenchida dos Cursos */
+.politica__bloco > .etiqueta {
+	margin-top: 1.25rem;
+}
+
+/* resumo do que o site não faz: lista com "check" (.lista-check do style-global.css), sem fundo de
+   pílula — pílula colorida fica reservada para o que é link ("Nesta página") */
+.politica__selos li {
+	color: var(--tinta);
+}
+
+/* o que ainda depende de confirmação: fio rosa ao lado (rosa só como desenho) */
+.politica__pendente {
+	position: relative;
+	margin-top: 1.25rem;
+	padding: 1.1rem 1.25rem 1.1rem 1.6rem;
+	border-radius: var(--raio);
+	background: var(--papel);
+	color: var(--texto-2);
+}
+
+.politica__pendente::before {
+	content: "";
+	position: absolute;
+	top: 1rem;
+	bottom: 1rem;
+	left: 0.6rem;
+	width: 4px;
+	border-radius: 2px;
+	background: var(--rosa);
+}
+
+.politica__pendente p {
+	margin: 0;
+}
+
+/* o que fica guardado no aparelho */
+.politica__ficha dd {
+	font-weight: 400;
+	color: var(--texto-2);
+}
+
+.politica__ficha dt {
+	color: var(--tinta);
+	font-size: var(--t-apoio);
+}
+
+.politica__chave {
+	display: block;
+	margin-top: 0.35rem;
+	font-size: var(--t-pequeno);
+	color: var(--texto-2);
+}
+
+.politica__chave code {
+	padding: 0.1rem 0.45rem;
+	border-radius: 0.4rem;
+	background: var(--petroleo-suave);
+	color: var(--petroleo-escuro);
+	font-family: Consolas, "Cascadia Mono", monospace;
+	font-size: 1rem;
+	white-space: nowrap;
+}
+
+/* a garantia de que o site não pede senha: cartão petróleo-suave com cadeado */
+.politica__garantia {
+	display: grid;
+	grid-template-columns: 3rem minmax(0, 1fr);
+	gap: 1rem;
+	align-items: center;
+	margin-top: 1.5rem;
+	padding: 1.25rem 1.5rem;
+	border-radius: var(--raio-grande);
+	background: var(--petroleo-suave);
+}
+
+.politica__garantia-icone {
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	background: var(--branco);
+	color: var(--petroleo);
+}
+
+.politica__garantia-icone svg {
+	width: 1.4rem;
+	height: 1.4rem;
+}
+
+.politica__garantia p {
+	margin: 0;
+	font-weight: 600;
+	color: var(--petroleo-escuro);
+}
+
+/* os seus direitos: o único assunto em cartão branco, porque é o que fala de você */
+.politica__bloco--direitos {
+	border-bottom: 0;
+}
+
+.politica__direitos {
+	padding: 1.75rem 1.5rem;
+	border-radius: var(--raio-grande);
+	border-top: 6px solid var(--eixo-1);
+	background: var(--branco);
+	box-shadow: 0 0.75rem 2rem rgba(22, 18, 24, 0.08);
+}
+
+.politica__bloco--direitos + .politica__bloco {
+	padding-top: 1rem;
+}
+
+.politica__topo {
+	margin-top: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+	.politica__direitos {
+		padding: 2.25rem 2.5rem;
+	}
+
+	.politica__cabeca {
+		grid-template-columns: 4rem minmax(0, 1fr);
+		gap: 1.25rem;
+	}
+
+	.politica__icone {
+		width: 4rem;
+		height: 4rem;
+	}
+
+	.politica__icone svg {
+		width: 1.8rem;
+		height: 1.8rem;
+	}
+}

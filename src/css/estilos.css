@@ -1,0 +1,1786 @@
+/*
+ * estilos.css — só a Home (versão 11). Cada seção com a forma que o conteúdo pede:
+ *  1. abertura com foto fundindo no petróleo, e os atalhos em cartões brancos mordendo a borda
+ *  3. quem somos com a marca inteira desenhada ao lado (sem foto de banco repetida)
+ *  4. eixos em cartões com a cor de cada eixo
+ *  5. inclusão digital num banner escuro com foto
+ *  6. primeiros passos como trilha (é uma sequência)
+ *  7. transparência numa faixa de cor
+ *  8. contato com a foto indo até a borda da tela
+ * Um bloco por seção, com o prefixo da seção.
+ *
+ * Movimento (16/11/2026, a pedido: "animações de scroll e hovers diferentes"): cada seção tem uma ideia
+ * só dela. Cinco acompanham a rolagem — a foto da abertura fica para trás, o ponto rosa orbita a marca,
+ * a trilha se desenha, a luz atravessa a Transparência e a cortina abre a foto do Contato. As outras
+ * entram uma vez (em cascata, de baixo para cima) e têm hovers próprios. A abertura nunca esconde texto.
+ * O estado escondido só existe com html.mov; sem JavaScript ou com "menos movimento", tudo fica parado.
+ */
+
+@property --arco {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 360deg;
+}
+
+/* =====================================================================
+   1. ABERTURA
+   ===================================================================== */
+.abertura {
+	position: relative;
+	display: flow-root; /* os atalhos avançam para a seção seguinte */
+	background: var(--petroleo-profundo);
+	color: var(--branco);
+}
+
+/* a foto "fica para trás" ao rolar (o funções-global.js escreve --foto-y; o vão que abre em cima
+   fica sempre atrás do cabeçalho fixo) */
+.abertura__foto {
+	--segue-amp: 64;
+	--segue-dist: 320;
+	position: relative;
+	display: block;
+	overflow: hidden;
+}
+
+.abertura__foto img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	object-fit: cover;
+	translate: 0 calc(var(--foto-y, 0) * 1px);
+	transform-origin: 50% 40%;
+}
+
+.abertura__foto::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(11, 63, 66, 0) 50%, var(--petroleo-profundo) 100%);
+}
+
+.abertura__dentro {
+	position: relative;
+	z-index: 1;
+	margin-top: -2rem;
+}
+
+.abertura__selo {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.25rem;
+	padding: 0.3rem 1rem;
+	border: 1px solid rgba(255, 255, 255, 0.32);
+	border-radius: 1.15rem; /* continua bonito quando quebra em duas linhas no celular */
+	background: var(--petroleo-profundo);
+	color: var(--petroleo-claro);
+	font-size: var(--t-pequeno);
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.abertura__titulo {
+	max-width: 11em;
+	margin-top: 1.25rem;
+	font-size: min(clamp(2.375rem, 1.5rem + 2.9vw, 3.75rem), 11vw);
+	font-weight: 800;
+	line-height: 1.08;
+	letter-spacing: -0.025em;
+}
+
+.abertura__destaque {
+	color: #9fd8da;
+}
+
+.abertura__subtitulo {
+	max-width: 30rem;
+	margin-top: 1.25rem;
+	color: var(--branco);
+	font-size: clamp(1.1875rem, 1.1rem + 0.3vw, 1.3125rem);
+	line-height: 1.55;
+}
+
+.abertura__botoes {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem 1rem;
+	margin-top: 2rem;
+}
+
+/* o "Texto maior" explicado em palavras, logo abaixo dos botões */
+.letra {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.75rem;
+	min-height: 3rem;
+	margin-top: 1.5rem;
+	padding: 0.25rem 0;
+	border: 0;
+	background: none;
+	color: var(--branco);
+	font-family: var(--fonte);
+	font-size: 1.0625rem;
+	font-weight: 600;
+	line-height: 1.35;
+	text-align: left;
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.3em;
+	cursor: pointer;
+}
+
+.letra__a {
+	position: relative;
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 50%;
+	background: var(--branco);
+	color: var(--petroleo-profundo);
+	font-family: var(--fonte-titulo);
+	font-size: 1rem;
+	font-weight: 800;
+}
+
+/* halo branco em volta do "A+" (hover e o convite de uma vez por visita) */
+.letra__a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.letra:hover {
+	text-decoration-thickness: 2px;
+}
+
+.abertura__texto :focus-visible {
+	outline-color: var(--branco);
+}
+
+/* ---- atalhos: cartões brancos que começam no petróleo e terminam no branco ---- */
+.atalhos {
+	position: relative;
+	z-index: 2;
+	container: atalhos / inline-size;
+	margin-top: 3rem;
+	margin-bottom: -4.5rem;
+}
+
+.atalhos__titulo {
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+.atalhos__lista {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.85rem;
+	margin-top: 1.25rem;
+}
+
+.atalhos__item:last-child {
+	grid-column: 1 / -1;
+}
+
+.atalho {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start; /* os ícones ficam na mesma altura, mesmo quando um nome quebra em duas linhas */
+	gap: 0.85rem;
+	height: 100%;
+	min-height: 9rem;
+	padding: 1.5rem 1rem;
+	border-radius: var(--raio);
+	background: var(--branco);
+	box-shadow: 0 1rem 2.25rem rgba(11, 63, 66, 0.2);
+	color: var(--tinta);
+	text-align: center;
+	text-decoration: none;
+	transition: transform var(--mov-hover) var(--curva), scale var(--passar) var(--curva);
+}
+
+/* a sombra maior do hover é uma camada que acende (sem animar box-shadow) */
+.atalho::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	box-shadow: 0 1.75rem 3rem rgba(11, 63, 66, 0.28);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--mov-hover) var(--curva);
+}
+
+/* hover: o círculo do ícone se enche de petróleo, de baixo para cima, como água */
+.atalho__icone {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: var(--petroleo-suave);
+	color: var(--petroleo);
+	transition: color 400ms var(--curva) 150ms;
+}
+
+.atalho__icone::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: var(--petroleo);
+	transform: translateY(101%);
+	transition: transform 600ms var(--curva);
+}
+
+.atalho__icone svg {
+	width: 1.75rem;
+	height: 1.75rem;
+}
+
+.atalho__nome {
+	font-family: var(--fonte-titulo);
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 1.2;
+	overflow-wrap: break-word;
+	text-wrap: balance;
+}
+
+/* o hover fica na célula (parada), para o cartão não tremer quando sobe e sai de baixo do cursor */
+.atalho:focus-visible .atalho__icone {
+	color: var(--branco);
+}
+
+.atalho:focus-visible .atalho__icone::before {
+	transform: none;
+}
+
+.atalho:focus-visible::after {
+	opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.atalhos__item:hover .atalho__icone {
+		color: var(--branco);
+	}
+
+	.atalhos__item:hover .atalho__icone::before {
+		transform: none;
+	}
+
+	.atalhos__item:hover > .atalho::after {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.atalho:focus-visible {
+		transform: translateY(-8px);
+	}
+
+	/* o toque aperta em 150 ms; ao soltar, volta no tempo normal */
+	.atalho:active {
+		scale: 0.98;
+		transition-duration: var(--mov-hover), var(--mov-toque);
+	}
+
+	.atalho:active .atalho__icone::before {
+		transform: none;
+		transition-duration: var(--mov-toque);
+	}
+
+	.atalho:active .atalho__icone {
+		color: var(--branco);
+		transition-delay: 0ms;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.atalhos__item:hover > .atalho {
+		transform: translateY(-8px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.atalho__icone::before {
+		transition: none;
+	}
+}
+
+/* o anel de foco em duas cores: aparece tanto no petróleo quanto no branco */
+.atalho:focus-visible {
+	outline: 3px solid var(--rosa-profundo);
+	outline-offset: 3px;
+	box-shadow: 0 0 0 9px var(--branco);
+}
+
+/* tela estreita (ou letra grande): um atalho por linha, ícone ao lado do nome */
+@container atalhos (max-width: 20rem) {
+	.atalhos__lista {
+		grid-template-columns: 1fr;
+	}
+
+	.atalhos__item:last-child {
+		grid-column: auto;
+	}
+
+	.atalho {
+		flex-direction: row;
+		justify-content: flex-start;
+		min-height: 4.75rem;
+		padding: 0.9rem 1.1rem;
+		text-align: left;
+	}
+
+	.atalho__icone {
+		width: 3rem;
+		height: 3rem;
+	}
+}
+
+@media (max-width: 47.99rem) {
+	.abertura__botoes .botao {
+		flex: 1 1 100%;
+	}
+}
+
+/* tablet: foto panorâmica em cima; atalhos três por linha, a segunda linha centralizada */
+@media (min-width: 48rem) {
+	.abertura__foto {
+		--segue-amp: 96;
+		--segue-dist: 400;
+	}
+
+	.abertura__foto img {
+		aspect-ratio: 16 / 9;
+	}
+
+	.abertura__dentro {
+		margin-top: -3rem;
+	}
+
+	.atalhos__lista {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1.25rem;
+	}
+
+	.atalhos__item {
+		flex: 0 0 calc((100% - 2 * 1.25rem) / 3);
+	}
+}
+
+@media (min-width: 64rem) {
+	.abertura {
+		min-height: 42rem;
+	}
+
+	.abertura__foto {
+		--segue-amp: 120;
+		--segue-dist: 480;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 64%;
+		height: calc(100% - 4rem); /* a foto termina perto de onde os atalhos cruzam a borda */
+	}
+
+	.abertura__foto img {
+		height: 100%;
+		aspect-ratio: auto;
+		/* foto de 18/11/2026: o recorte do computador já tira a mulher da borda esquerda; 10% no alto
+		   para, nas telas largas, não cortar o cabelo de quem está no centro */
+		object-position: 78% 10%;
+		transform-origin: 65% 45%;
+	}
+
+	.abertura__foto::after {
+		background:
+			linear-gradient(90deg, var(--petroleo-profundo) 0%, rgba(11, 63, 66, 0.86) 14%, rgba(11, 63, 66, 0.35) 30%, rgba(11, 63, 66, 0) 44%),
+			linear-gradient(0deg, var(--petroleo-profundo) 0%, rgba(11, 63, 66, 0) 35%);
+	}
+
+	.abertura__dentro {
+		margin-top: 0;
+		padding-top: 5rem;
+	}
+
+	.abertura__texto {
+		max-width: 34rem;
+	}
+
+	.atalhos {
+		margin-top: 4rem;
+		margin-bottom: -5rem;
+	}
+
+	.atalho {
+		min-height: 10.5rem;
+	}
+}
+
+/* os cinco atalhos numa linha só quando cada cartão tem largura para o nome inteiro
+   (com a margem de 6%, isso acontece a partir de ~1090 px; antes, três em cima e dois embaixo) */
+@container atalhos (min-width: 60rem) {
+	.atalhos__item {
+		flex-basis: calc((100% - 4 * 1.25rem) / 5);
+	}
+}
+
+/* =====================================================================
+   3. QUEM SOMOS — a marca inteira desenhada ao lado do texto
+   ===================================================================== */
+.quem-somos {
+	padding-block: calc(4.5rem + 4rem) 5rem;
+	overflow-x: clip; /* o ponto rosa em órbita nunca cria rolagem lateral */
+	background: var(--branco);
+}
+
+.quem-somos__grade {
+	display: grid;
+	gap: 3.5rem;
+	align-items: center;
+}
+
+.quem-somos__texto .titulo-secao {
+	max-width: 15em;
+	margin-top: 0.5rem;
+}
+
+.quem-somos__corpo {
+	max-width: 36rem;
+	margin-top: 1.25rem;
+	color: var(--texto-2);
+}
+
+.quem-somos__texto .botao {
+	margin-top: 2rem;
+}
+
+/* a marca num círculo claro, com um anel fino e um ponto rosa que corre pelo anel conforme a rolagem */
+.quem-somos__marca {
+	--orbita-base: 133.5deg; /* onde o ponto fica parado (o funções-global.js lê daqui) */
+	--orbita-amp: 100deg;
+	position: relative;
+	display: grid;
+	place-items: center;
+	justify-self: center;
+	width: min(100% - 2rem, 15rem);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--petroleo-suave);
+}
+
+/* o anel (width/height/opacity/transition declarados: no Elementor o ::before de um container é a
+   "Sobreposição de fundo", que traz tamanho e transição próprios) */
+.quem-somos__marca::before {
+	content: "";
+	position: absolute;
+	inset: -0.85rem;
+	width: auto;
+	height: auto;
+	border: 2px solid #b9dcdd;
+	border-radius: 50%;
+	opacity: 1;
+	mix-blend-mode: normal;
+	transition: none;
+}
+
+/* o ponto fica sobre o anel e gira em volta do centro da marca: 407,14% = 50% + metade da marca ÷ 14%.
+   Parado (sem JavaScript ou com "menos movimento"), fica a 133,5°, embaixo à direita. */
+.quem-somos__marca::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: calc(1px - 0.85rem);
+	width: 14%;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	background: var(--rosa);
+	transform-origin: 50% calc(407.14% + 0.85rem - 1px);
+	transform: translate(-50%, -50%) rotate(calc(var(--orbita-base) + var(--orbita, 0) * var(--orbita-amp)));
+}
+
+.quem-somos__marca img {
+	width: 62%;
+	height: auto;
+}
+
+@media (min-width: 48rem) {
+	.quem-somos__marca {
+		--orbita-amp: 140deg;
+		width: min(100% - 2rem, 18rem);
+	}
+}
+
+@media (max-width: 47.99rem) {
+	.quem-somos__texto .botao {
+		width: 100%;
+	}
+}
+
+@media (min-width: 64rem) {
+	.quem-somos {
+		padding-block: calc(5rem + 5.5rem) 7rem;
+	}
+
+	.quem-somos__grade {
+		grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+		gap: 4rem;
+	}
+
+	.quem-somos__marca {
+		width: min(100% - 2rem, 25rem);
+	}
+}
+
+/* =====================================================================
+   4. CINCO EIXOS — cartões com a cor de cada eixo
+   ===================================================================== */
+.eixos {
+	padding-block: 5rem 3rem;
+	background: var(--papel);
+}
+
+.eixos > .conteudo {
+	container: eixos / inline-size;
+}
+
+.eixos__cabeca {
+	display: grid;
+	gap: 1rem;
+}
+
+.eixos__cabeca .titulo-secao {
+	max-width: 14em;
+	margin-top: 0.5rem;
+}
+
+.eixos__texto {
+	max-width: 30rem;
+	color: var(--texto-2);
+}
+
+.eixo--1 { --cor-eixo: var(--eixo-1); }
+.eixo--2 { --cor-eixo: var(--eixo-2); }
+.eixo--3 { --cor-eixo: var(--eixo-3); }
+.eixo--4 { --cor-eixo: var(--eixo-4); }
+.eixo--5 { --cor-eixo: var(--eixo-5); }
+
+.eixos__lista {
+	display: grid;
+	gap: 1rem;
+	margin-top: 2.5rem;
+}
+
+/* celular: ícone ao lado; o "Saiba mais" sempre no pé do cartão */
+.eixo {
+	position: relative;
+	display: grid;
+	grid-template-columns: 3.5rem minmax(0, 1fr);
+	grid-template-rows: auto 1fr auto;
+	align-items: start;
+	column-gap: 1rem;
+	height: 100%;
+	padding: 1.6rem 1.25rem 1.25rem;
+	overflow: hidden;
+	isolation: isolate;
+	border: 1px solid var(--fio);
+	border-radius: var(--raio);
+	background: var(--branco);
+	color: var(--tinta);
+	text-decoration: none;
+}
+
+/* a cor do eixo: uma faixa reta no alto do cartão (na entrada, ela se desenha da esquerda) */
+.eixo::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	height: 5px;
+	background: var(--cor-eixo);
+	transform-origin: left;
+}
+
+/* hover: a cor do eixo "escorre" da faixa e lava o cartão (o cartão não sobe: subir é dos atalhos) */
+.eixo::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: color-mix(in srgb, var(--cor-eixo) 9%, var(--branco));
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity var(--passar) var(--curva);
+}
+
+.eixo__icone {
+	grid-row: 1 / -1;
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--cor-eixo) 12%, var(--branco));
+	color: var(--cor-eixo);
+	transition: background-color var(--passar) var(--curva), color var(--passar) var(--curva);
+}
+
+.eixo__icone svg {
+	width: 1.75rem;
+	height: 1.75rem;
+}
+
+.eixo__nome {
+	font-family: var(--fonte-titulo);
+	font-size: 1.1875rem;
+	font-weight: 700;
+	line-height: 1.25;
+	overflow-wrap: break-word;
+	text-wrap: balance;
+}
+
+.eixo__resumo {
+	margin-top: 0.4rem;
+	color: var(--texto-2);
+	font-size: 1.0625rem;
+	line-height: 1.5;
+	text-wrap: pretty;
+}
+
+.eixo__mais {
+	justify-self: start;
+	margin-top: 0.85rem;
+	color: var(--petroleo);
+	font-size: var(--t-pequeno);
+	font-weight: 700;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.25em;
+}
+
+/* o "›" fica fora do sublinhado e avança no hover */
+.eixo__mais::after {
+	content: "›";
+	display: inline-block;
+	margin-left: 0.25em;
+	transition: translate var(--mov-hover) var(--curva);
+}
+
+.eixo:focus-visible::after {
+	opacity: 1;
+}
+
+.eixo:focus-visible .eixo__icone {
+	background: var(--cor-eixo);
+	color: var(--branco);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.eixo:hover::after {
+		opacity: 1;
+	}
+
+	.eixo:hover .eixo__icone {
+		background: var(--cor-eixo);
+		color: var(--branco);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.eixo::after {
+		opacity: 1;
+		transform: scaleY(0);
+		transform-origin: 50% 0;
+		transition: transform var(--mov-lavar) var(--curva);
+	}
+
+	.eixo:focus-visible::after {
+		transform: none;
+	}
+
+	.eixo:active::after {
+		transform: none;
+		transition-duration: var(--mov-toque);
+	}
+
+	.eixo:focus-visible .eixo__mais::after {
+		translate: 6px 0;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.eixo:hover::after {
+		transform: none;
+	}
+
+	.eixo:hover .eixo__mais::after {
+		translate: 6px 0;
+	}
+}
+
+@media (min-width: 48rem) {
+	.eixos__cabeca {
+		grid-template-columns: 7fr 5fr;
+		align-items: end;
+		column-gap: 2.5rem;
+	}
+}
+
+/* tela muito estreita ou letra grande: o ícone vai para cima do texto, e o nome não quebra no meio da palavra */
+@container eixos (max-width: 20rem) {
+	.eixo {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto 1fr auto;
+		padding: 1.5rem 1.25rem 1.25rem;
+	}
+
+	.eixo__icone {
+		grid-row: auto;
+		width: 3rem;
+		height: 3rem;
+		margin-bottom: 0.9rem;
+	}
+
+	.eixo__icone svg {
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+}
+
+/* duas colunas (Cultura ocupa a linha toda) */
+@container eixos (min-width: 36rem) {
+	.eixos__lista {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1.25rem;
+	}
+
+	.eixos__item:last-child {
+		grid-column: 1 / -1;
+	}
+}
+
+/* três em cima, dois embaixo e centralizados (seis trilhas, cada cartão em duas) */
+@container eixos (min-width: 48rem) {
+	.eixos__lista {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+
+	.eixos__item {
+		grid-column: span 2;
+	}
+
+	.eixos__item:nth-child(4) {
+		grid-column: 2 / span 2;
+	}
+
+	.eixos__item:last-child {
+		grid-column: 4 / span 2;
+	}
+
+	.eixo {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto 1fr auto;
+		padding: 2rem 1.5rem 1.5rem;
+	}
+
+	.eixo__icone {
+		grid-row: auto;
+		margin-bottom: 1.25rem;
+	}
+}
+
+/* os cinco lado a lado */
+@container eixos (min-width: 68rem) {
+	.eixos__lista {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+
+	.eixos__item,
+	.eixos__item:nth-child(4),
+	.eixos__item:last-child {
+		grid-column: auto;
+	}
+}
+
+@media (min-width: 64rem) {
+	.eixos {
+		padding-block: 7rem 3.5rem;
+	}
+}
+
+/* =====================================================================
+   5. TECNOLOGIA QUE APROXIMA PESSOAS — banner escuro com foto (sobre o papel dos eixos)
+   ===================================================================== */
+.tecnologia {
+	padding-bottom: 5rem;
+	background: var(--papel);
+}
+
+.tecnologia__banner {
+	position: relative;
+	display: grid;
+	overflow: hidden;
+	border-radius: var(--raio-grande);
+	background: var(--petroleo-profundo);
+	color: var(--branco);
+}
+
+/* 18/11/2026, a pedido ("sem gradiente nem blur, divisão assimétrica com recorte discreto"): a foto
+   termina num arco suave, mais fundo de um lado que do outro — a mesma curva redonda da marca.
+   Foto em cima (até 1199 px): o arco fica na borda de baixo. */
+.tecnologia__foto {
+	position: relative;
+	order: -1;
+	overflow: hidden;
+	clip-path: ellipse(115% 100% at 35% 0);
+}
+
+/* quando o botão do banner recebe o mouse (ou o foco), a cena se aproxima devagar */
+.tecnologia__foto img {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	transform-origin: 45% 40%;
+	transition: scale var(--mov-foto) var(--curva);
+}
+
+/* ".botao :focus-visible" cobre o Elementor, onde o link focado fica dentro da peça com a classe */
+@media (prefers-reduced-motion: no-preference) {
+	.tecnologia__banner:has(.botao:focus-visible, .botao :focus-visible) .tecnologia__foto img {
+		scale: 1.06;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.tecnologia__banner:has(.botao:hover) .tecnologia__foto img {
+		scale: 1.06;
+	}
+}
+
+.tecnologia__texto {
+	position: relative;
+	padding: 1.5rem 1.5rem 3rem;
+}
+
+.tecnologia__marcas {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.6rem 1rem;
+}
+
+.tecnologia .titulo-secao {
+	margin-top: 1rem;
+}
+
+.tecnologia__intro {
+	max-width: 32rem;
+	margin-top: 1rem;
+	color: var(--branco);
+}
+
+.tecnologia .botao {
+	margin-top: 2rem;
+}
+
+.tecnologia :focus-visible {
+	outline-color: var(--branco);
+}
+
+/* .etiqueta--clara e .lista-check foram para o style-global.css (18/11/2026): as páginas internas também usam */
+
+@media (max-width: 47.99rem) {
+	.tecnologia > .conteudo {
+		width: 100%;
+	}
+
+	.tecnologia__banner {
+		border-radius: 0;
+	}
+
+	.tecnologia__texto {
+		padding-inline: var(--margem);
+	}
+
+	.tecnologia .botao {
+		width: 100%;
+	}
+}
+
+@media (min-width: 48rem) {
+	/* foto em cima, faixa larga: 20% no alto para não cortar o coque da moça de amarelo */
+	.tecnologia__foto img {
+		aspect-ratio: 16 / 9;
+		object-position: 45% 20%;
+	}
+
+	.tecnologia__texto {
+		padding: 2rem 2.5rem 3.5rem;
+	}
+}
+
+@media (min-width: 64rem) {
+	.tecnologia {
+		padding-bottom: 7rem;
+	}
+
+	/* notebook (1024–1439 px), foto em cima: faixa 2:1 para o cartão não ficar alto demais */
+	.tecnologia__foto img {
+		aspect-ratio: 2 / 1;
+	}
+}
+
+/* texto e foto lado a lado só a partir de 1440 px: abaixo disso a coluna da foto ficava estreita e alta
+   e as pessoas, apertadas (em 1280 a moça de amarelo sumia) — até lá vale a foto em cima, como no tablet */
+@media (min-width: 90rem) {
+	.tecnologia__banner {
+		grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+		min-height: 34rem;
+	}
+
+	/* lado a lado o arco passa para a borda esquerda da foto: quase reto no alto, mais aberto embaixo */
+	.tecnologia__foto {
+		order: 0;
+		clip-path: ellipse(100% 130% at 100% 40%);
+	}
+
+	.tecnologia__foto img {
+		aspect-ratio: auto;
+		object-position: 45% 40%;
+	}
+
+	.tecnologia__texto {
+		align-self: center;
+		padding: 4rem 2rem 4.5rem 3.5rem;
+	}
+}
+
+/* telas largas: a foto ganha um pouco mais de largura e as duas mulheres respiram */
+@media (min-width: 100rem) {
+	.tecnologia__banner {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+	}
+}
+
+/* =====================================================================
+   6. PRIMEIROS PASSOS — uma trilha (1 → 2 → a seguir)
+   ===================================================================== */
+.passos {
+	padding-block: 5rem;
+	background: var(--branco);
+}
+
+.passos__cabeca {
+	max-width: 44rem;
+}
+
+.passos__cabeca .titulo-secao {
+	margin-top: 0.5rem;
+}
+
+.passos__intro {
+	margin-top: 1rem;
+	color: var(--texto-2);
+}
+
+.trilha {
+	position: relative;
+	display: grid;
+	gap: 2rem;
+	margin: 3rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* celular: cada trecho se desenha quando passa pela "linha de leitura" a 70% da tela;
+   computador: a trilha toda se desenha enquanto o topo dela vai de 85% a 45% da tela */
+.hw-segue--trilha {
+	--segue-modo: linha;
+	--segue-linha: 0.7;
+}
+
+/* celular: a linha da trilha desce pela esquerda, passando pelo centro dos pontos.
+   A linha se desenha conforme a rolagem: o funções-global.js escreve --traco (0 a 1) em cada marco.
+   É recorte, não escala, para o tracejado não esticar. Parado, --traco vale 1 (linha inteira). */
+.marco {
+	--tracejado-passo: 0 16px; /* um período do tracejado, para ele "andar" sem emenda */
+	position: relative;
+	display: grid;
+	grid-template-columns: 3.5rem minmax(0, 1fr);
+	align-content: start; /* os três marcos começam na mesma altura */
+	align-items: start;
+	gap: 1.1rem;
+}
+
+.marco:not(:last-child)::after {
+	content: "";
+	position: absolute;
+	top: 3.5rem;
+	bottom: -2rem;
+	left: calc(1.75rem - 2px);
+	width: 4px;
+	border-radius: 4px;
+	background: var(--petroleo);
+	clip-path: inset(0 0 calc((1 - var(--traco, 1)) * 100%) 0 round 2px);
+}
+
+/* o trecho que leva ao "a seguir" é tracejado: ainda não chegou lá (um período por repetição) */
+.marco:nth-child(2)::after {
+	background: linear-gradient(180deg, var(--petroleo) 0 8px, transparent 8px) 0 0 / 100% 16px repeat-y;
+}
+
+.marco__ponto {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: var(--petroleo);
+	color: var(--branco);
+	transition: scale 700ms var(--curva-pouso), background-color 600ms var(--curva), color 600ms var(--curva), box-shadow 600ms var(--curva);
+}
+
+/* halo único quando o "A seguir" acende */
+.marco--a-seguir .marco__ponto::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	box-shadow: 0 0 0 3px var(--petroleo);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.marco__ponto svg {
+	width: 1.75rem;
+	height: 1.75rem;
+}
+
+.marco--a-seguir .marco__ponto {
+	background: var(--branco);
+	box-shadow: inset 0 0 0 3px var(--petroleo);
+	color: var(--petroleo);
+}
+
+.marco__titulo {
+	margin-top: 0.75rem;
+	font-size: 1.25rem;
+	line-height: 1.3;
+}
+
+.marco__texto > p:last-child {
+	margin-top: 0.4rem;
+	color: var(--texto-2);
+	font-size: 1.0625rem;
+	line-height: 1.5;
+	text-wrap: pretty;
+}
+
+.passos__fim {
+	display: grid;
+	gap: 1.25rem;
+	align-items: center;
+	margin-top: 2.5rem;
+	padding-top: 2rem;
+	border-top: 1px solid var(--fio);
+}
+
+.passos__fim p {
+	color: var(--texto-2);
+	font-size: var(--t-apoio);
+}
+
+@media (max-width: 47.99rem) {
+	.passos__fim .botao {
+		width: 100%;
+	}
+}
+
+@media (min-width: 48rem) {
+	.passos__fim {
+		grid-template-columns: 1fr auto;
+	}
+}
+
+@media (min-width: 64rem) {
+	.passos {
+		padding-block: 7rem;
+	}
+
+	/* computador: a trilha corre na horizontal, com os pontos no alto e o texto embaixo */
+	.trilha {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 2.5rem;
+		margin-top: 3.5rem;
+	}
+
+	.hw-segue--trilha {
+		--segue-modo: tela;
+		--segue-de: 0.85;
+		--segue-ate: 0.45;
+	}
+
+	.marco {
+		--tracejado-passo: 20px 0;
+		grid-template-columns: 1fr;
+		justify-items: start;
+	}
+
+	.marco__ponto {
+		width: 4.5rem;
+		height: 4.5rem;
+	}
+
+	.marco__ponto svg {
+		width: 2.1rem;
+		height: 2.1rem;
+	}
+
+	.marco:not(:last-child)::after {
+		top: calc(2.25rem - 2px);
+		right: -2.5rem;
+		bottom: auto;
+		left: 4.5rem;
+		width: auto;
+		height: 4px;
+		clip-path: inset(0 calc((1 - var(--traco, 1)) * 100%) 0 0 round 2px);
+	}
+
+	.marco:nth-child(2)::after {
+		background: linear-gradient(90deg, var(--petroleo) 0 10px, transparent 10px) 0 0 / 20px 100% repeat-x;
+	}
+
+	.marco__texto {
+		max-width: 20rem;
+	}
+}
+
+/* =====================================================================
+   7. TRANSPARÊNCIA — faixa de cor com recortes diagonais
+   ===================================================================== */
+/* as duas faixas de luz são camadas inclinadas (::before larga, ::after fina) que atravessam a faixa
+   em sentidos opostos conforme a rolagem (--luz de -1 a 1); paradas, ficam onde sempre estiveram */
+.transparencia {
+	--luz-a: 96px;
+	--luz-b: -60px;
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+	overflow: clip;
+	padding-block: 3.5rem;
+	background-color: var(--petroleo);
+	color: var(--branco);
+}
+
+.transparencia::before,
+.transparencia::after {
+	content: "";
+	position: absolute;
+	top: -10%;
+	bottom: -10%;
+	height: auto; /* no Elementor, a "Sobreposição de fundo" traz height: 100% */
+	z-index: 0;
+	opacity: 0.5;
+	mix-blend-mode: normal;
+	pointer-events: none;
+	transform: skewX(-25deg);
+	transition: opacity var(--mov-lavar) var(--curva);
+}
+
+/* posições que reproduzem o degradê de 115° aprovado, por faixa de tela */
+.transparencia::before {
+	left: 65%;
+	width: 18%;
+	background: rgba(255, 255, 255, 0.12);
+	translate: calc(var(--luz, 0) * var(--luz-a)) 0;
+}
+
+.transparencia::after {
+	left: 86.5%;
+	width: 26%;
+	background: rgba(255, 255, 255, 0.08);
+	translate: calc(var(--luz, 0) * var(--luz-b)) 0;
+}
+
+@media (min-width: 48rem) {
+	.transparencia::before {
+		left: 62%;
+		width: 14.3%;
+	}
+
+	.transparencia::after {
+		left: 78.8%;
+		width: 19.1%;
+	}
+}
+
+@media (min-width: 64rem) {
+	.transparencia::before {
+		left: 61%;
+		width: 13%;
+	}
+
+	.transparencia::after {
+		left: 76%;
+		width: 18%;
+	}
+
+	/* quando o botão recebe o mouse (ou o foco), as faixas acendem. Só no computador: em uma coluna,
+	   o parágrafo passa sob o cruzamento das faixas acesas e o contraste cairia */
+	.transparencia:has(.botao:hover, .botao:focus-visible, .botao :focus-visible)::before,
+	.transparencia:has(.botao:hover, .botao:focus-visible, .botao :focus-visible)::after {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.transparencia .botao--contorno-claro:hover {
+		background: var(--petroleo-profundo);
+	}
+}
+
+.transparencia__dentro {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	gap: 1.75rem;
+	align-items: center;
+}
+
+/* aqui o contorno claro enche de petróleo profundo (branco translúcido sobre o petróleo perderia contraste) */
+.transparencia .botao--contorno-claro {
+	--botao-enche: var(--petroleo-profundo);
+}
+
+.transparencia__titulo {
+	font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.375rem);
+	line-height: 1.15;
+}
+
+.transparencia__texto p {
+	max-width: 46rem;
+	margin-top: 0.75rem;
+	color: var(--branco);
+	font-size: var(--t-apoio);
+	line-height: 1.55;
+}
+
+.transparencia :focus-visible {
+	outline-color: var(--branco);
+}
+
+@media (max-width: 47.99rem) {
+	.transparencia .botao {
+		width: 100%;
+	}
+}
+
+@media (min-width: 48rem) {
+	.transparencia {
+		--luz-a: 160px;
+		--luz-b: -96px;
+	}
+}
+
+@media (min-width: 64rem) {
+	.transparencia {
+		--luz-a: 200px;
+		--luz-b: -120px;
+		padding-block: 4rem;
+	}
+
+	.transparencia__dentro {
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: 3rem;
+	}
+}
+
+/* =====================================================================
+   8. CONTATO E CONEXÕES — metade texto, metade foto até a borda da tela
+   ===================================================================== */
+.contato {
+	display: grid;
+	background: var(--papel);
+}
+
+.contato__texto {
+	width: min(100% - 2 * var(--margem), 36rem);
+	margin-inline: auto;
+	padding-block: 4.5rem 3.5rem;
+}
+
+.contato__texto .titulo-secao {
+	max-width: 12em;
+	margin-top: 0.5rem;
+}
+
+.contato__corpo {
+	margin-top: 1.25rem;
+	color: var(--texto-2);
+}
+
+.contato__texto .botao {
+	margin-top: 2rem;
+}
+
+.contato__sede {
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+	margin-top: 2.25rem;
+	padding-top: 1.75rem;
+	border-top: 1px solid var(--fio);
+}
+
+.contato__pin {
+	position: relative;
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	background: var(--petroleo);
+	color: var(--branco);
+	transition: transform 800ms var(--curva-pouso);
+}
+
+/* a onda que o pino solta ao pousar */
+.contato__pin::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px var(--petroleo);
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* o pino se levanta enquanto o botão "Entre em contato" recebe o mouse ou o foco */
+@media (prefers-reduced-motion: no-preference) {
+	.contato__texto:has(.botao:focus-visible, .botao :focus-visible) .contato__pin {
+		transform: translateY(-8px);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.contato__texto:has(.botao:hover) .contato__pin {
+		transform: translateY(-8px);
+	}
+}
+
+.contato__pin svg {
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.contato__sede-rotulo {
+	color: var(--texto-2);
+	font-size: var(--t-pequeno);
+	font-weight: 600;
+}
+
+.contato__sede address {
+	margin-top: 0.2rem;
+	font-size: 1.125rem;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+/* a foto se abre até a borda da tela conforme a rolagem: uma cortina na cor do papel desliza para a
+   direita (--cortina de 0 a 1, só avança) e a foto assenta. Parada, --cortina vale 1 (foto aberta). */
+.contato__foto {
+	--segue-de: 1;
+	--segue-ate: 0.6;
+	position: relative;
+	display: block;
+	overflow: hidden;
+}
+
+.contato__foto img {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	transform-origin: 0 50%;
+}
+
+/* a cortina só existe com o motor de rolagem ligado (html.mov-segue): sem ele — navegador antigo,
+   falha do script, impressão, "menos movimento" — a foto fica sempre aberta */
+.contato__foto::after {
+	content: none;
+	position: absolute;
+	inset: 0;
+	background: var(--papel);
+	pointer-events: none;
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+	html.mov-segue .contato__foto::after {
+		content: "";
+		translate: calc(var(--cortina, 1) * 101%) 0;
+	}
+
+	html.mov-segue .contato__foto img {
+		scale: calc(1.1 - 0.1 * var(--cortina, 1));
+	}
+}
+
+@media (max-width: 47.99rem) {
+	.contato__texto .botao {
+		width: 100%;
+	}
+}
+
+@media (min-width: 64rem) {
+	.contato {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		min-height: 38rem;
+	}
+
+	/* o texto alinha com a margem esquerda do conteúdo das outras seções */
+	.contato__texto {
+		align-self: center;
+		width: auto;
+		max-width: calc(36rem + max(var(--margem), (var(--largura-janela, 100vw) - var(--largura)) / 2));
+		margin: 0;
+		padding: 6rem 4rem 6rem max(var(--margem), (var(--largura-janela, 100vw) - var(--largura)) / 2);
+	}
+
+	.contato__foto {
+		--segue-ate: 0.55;
+	}
+
+	.contato__foto img {
+		aspect-ratio: auto;
+		/* foto de 18/11/2026: puxa para a direita para a coluna estreita mostrar as duas mulheres
+		   que conversam (a do meio e a da direita) sem cortar rosto no meio */
+		object-position: 80% 45%;
+	}
+}
+
+/* com a coluna mais larga, encosta à direita: some o braço solto da mulher da esquerda e o cabelo
+   da mulher da direita entra inteiro */
+@media (min-width: 75rem) {
+	.contato__foto img {
+		object-position: 100% 45%;
+	}
+}
+
+/* =====================================================================
+   MOVIMENTO DA HOME — entradas de cada seção e o que só existe com movimento ligado
+   (o motor e os tipos comuns ficam no style-global.css; hovers ficam junto de cada seção)
+   ===================================================================== */
+@keyframes mov-assenta {
+	from {
+		scale: 1.06;
+	}
+}
+
+@keyframes mov-halo {
+	from {
+		opacity: 0.6;
+		scale: 1;
+	}
+
+	to {
+		opacity: 0;
+		scale: 1.7;
+	}
+}
+
+@keyframes mov-marca-disco {
+	from {
+		opacity: 0;
+		scale: 0.86;
+	}
+}
+
+@keyframes mov-marca-ponto {
+	from {
+		opacity: 0;
+		scale: 1.2;
+	}
+}
+
+@keyframes mov-arco {
+	from {
+		--arco: 0deg;
+	}
+
+	to {
+		--arco: 360deg;
+	}
+}
+
+@keyframes mov-janela {
+	from {
+		translate: 0 var(--dist-banner);
+		clip-path: inset(0 var(--janela-recorte, 0px) round var(--janela-raio, 0px));
+	}
+
+	to {
+		clip-path: inset(0 0 round var(--janela-raio, 0px));
+	}
+}
+
+@keyframes mov-check-circulo {
+	from {
+		opacity: 0;
+		scale: 0.4;
+	}
+}
+
+@keyframes mov-check-traco {
+	from {
+		clip-path: inset(0 100% 0 0);
+	}
+
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+@keyframes mov-onda-a-seguir {
+	from {
+		opacity: 0.4;
+		scale: 1;
+	}
+
+	to {
+		opacity: 0;
+		scale: 1.5;
+	}
+}
+
+@keyframes mov-tracejado {
+	to {
+		background-position: var(--tracejado-passo);
+	}
+}
+
+@keyframes mov-pino {
+	from {
+		opacity: 0;
+		translate: 0 -40px;
+	}
+}
+
+@keyframes mov-onda-pino {
+	from {
+		opacity: 0.5;
+		scale: 1;
+	}
+
+	to {
+		opacity: 0;
+		scale: 1.9;
+	}
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+	/* ---- abertura: o texto fica parado; só a foto assenta (de 106% para 100%) ao carregar ---- */
+	html.mov .abertura__foto:not(.assenta) img {
+		scale: 1.06;
+	}
+
+	html.mov .abertura__foto.assenta img {
+		animation: mov-assenta var(--mov-assenta) var(--curva-entra) backwards;
+	}
+
+	/* "A+" da abertura: hover com halo fixo; convite (halo duas vezes) uma vez por visita */
+	.letra__a {
+		transition: scale 600ms var(--curva);
+	}
+
+	.letra__a::after {
+		transition: opacity 600ms var(--curva), scale 600ms var(--curva);
+	}
+
+	.letra:focus-visible .letra__a {
+		scale: 1.12;
+	}
+
+	.letra:focus-visible .letra__a::after {
+		opacity: 0.45;
+		scale: 1.3;
+	}
+
+	.letra:active .letra__a {
+		scale: 0.94;
+	}
+
+	html.mov .letra.convite .letra__a::after {
+		animation: mov-halo 1400ms var(--curva) var(--convite-atraso, 1800ms) 2;
+	}
+
+	/* ---- quem somos: a marca se monta (disco, ponto pousando no anel, anel traçado pelo ponto) ---- */
+	html.mov .hw-entra--marca:not(.entrou) {
+		opacity: 0;
+		scale: 0.86;
+	}
+
+	html.mov .hw-entra--marca:not(.entrou)::after {
+		opacity: 0;
+	}
+
+	html.mov .hw-entra--marca.entrou {
+		animation: mov-marca-disco 1200ms var(--curva-entra) backwards;
+	}
+
+	html.mov .hw-entra--marca.entrou::after {
+		animation: mov-marca-ponto 800ms var(--curva-pouso) 300ms backwards;
+	}
+
+	/* o anel só se desenha onde o navegador sabe animar o ângulo (@property); senão aparece inteiro */
+	html.mov.mov-arco .hw-entra--marca::before {
+		-webkit-mask: conic-gradient(from var(--arco-inicio, var(--orbita-base)), #000 var(--arco), transparent 0);
+		mask: conic-gradient(from var(--arco-inicio, var(--orbita-base)), #000 var(--arco), transparent 0);
+	}
+
+	html.mov.mov-arco .hw-entra--marca:not(.entrou)::before {
+		--arco: 0deg;
+	}
+
+	html.mov.mov-arco .hw-entra--marca.entrou::before {
+		animation: mov-arco var(--mov-anel) var(--curva-traco) 600ms backwards;
+	}
+
+	/* ---- eixos: quando o cartão assenta, a faixa de cor se desenha (as cinco correm como uma régua) ---- */
+	html.mov .hw-entra--cartao:not(.entrou) .eixo::before {
+		scale: 0 1;
+	}
+
+	html.mov .hw-entra--cartao.entrou .eixo::before {
+		animation: mov-traca-x var(--mov-traco) var(--curva-traco) calc(var(--atraso, 0ms) + 350ms) backwards;
+	}
+
+	/* ---- inclusão digital: a janela se abre (nunca fica invisível) e os checks se marcam ---- */
+	html.mov .hw-entra--banner:not(.entrou) {
+		translate: 0 var(--dist-banner);
+		clip-path: inset(0 var(--janela-recorte, 0px) round var(--janela-raio, 0px));
+	}
+
+	html.mov .hw-entra--banner.entrou {
+		animation: mov-janela var(--mov-banner) var(--curva-entra) backwards;
+	}
+
+	@media (min-width: 48rem) {
+		.tecnologia__banner {
+			--janela-raio: var(--raio-grande);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.tecnologia__banner {
+			--janela-recorte: min(4%, 2.75rem);
+		}
+	}
+
+	html.mov .hw-entra--checks:not(.entrou) li::before {
+		opacity: 0;
+		scale: 0.4;
+	}
+
+	html.mov .hw-entra--checks:not(.entrou) li::after {
+		clip-path: inset(0 100% 0 0);
+	}
+
+	html.mov .hw-entra--checks.entrou li::before {
+		animation: mov-check-circulo 500ms var(--curva-pouso) 300ms backwards;
+	}
+
+	html.mov .hw-entra--checks.entrou li::after {
+		animation: mov-check-traco 450ms var(--curva-traco) 500ms backwards;
+	}
+
+	html.mov .hw-entra--checks.entrou li:nth-child(2)::before { animation-delay: 600ms; }
+	html.mov .hw-entra--checks.entrou li:nth-child(2)::after { animation-delay: 800ms; }
+	html.mov .hw-entra--checks.entrou li:nth-child(3)::before { animation-delay: 900ms; }
+	html.mov .hw-entra--checks.entrou li:nth-child(3)::after { animation-delay: 1100ms; }
+
+	/* ---- primeiros passos: o 1º ponto brota; o 2º e o "A seguir" ficam apagados até a linha chegar ---- */
+	.marco__ponto.hw-entra--icone {
+		--de-escala: 0.7;
+	}
+
+	html.mov-segue .marco:nth-child(2) .marco__ponto:not(.aceso) {
+		scale: 0.82;
+		background: var(--petroleo-suave);
+		color: var(--petroleo);
+	}
+
+	html.mov-segue .marco--a-seguir .marco__ponto:not(.aceso) {
+		scale: 0.82;
+		box-shadow: inset 0 0 0 3px var(--petroleo-claro);
+	}
+
+	html.mov-segue .marco--a-seguir .marco__ponto.aceso::after {
+		animation: mov-onda-a-seguir var(--mov-onda) var(--curva);
+	}
+
+	/* o tracejado anda um período em direção ao "A seguir" quando o botão da seção recebe o mouse/foco
+	   (o funções-global.js põe .anda e tira no fim: a passagem termina inteira, mesmo se o mouse sair) */
+	html.mov .marco.anda::after {
+		animation: mov-tracejado 1200ms var(--curva-traco);
+	}
+
+	/* ---- contato: o pino cai e pousa, soltando uma onda. Só depois que o endereço (o pai) entrou e
+	   quase assentou: herda o --atraso dele, então a queda nunca se soma à subida do endereço ---- */
+	html.mov .hw-entra--pino:not(.entrou) {
+		opacity: 0;
+		translate: 0 -40px;
+	}
+
+	html.mov .hw-entra--texto.entrou > .hw-entra--pino.entrou {
+		animation: mov-pino 900ms var(--curva-pouso) calc(var(--atraso, 0ms) + 900ms) backwards;
+	}
+
+	html.mov .hw-entra--texto.entrou > .hw-entra--pino.entrou::after {
+		animation: mov-onda-pino var(--mov-onda) var(--curva) calc(var(--atraso, 0ms) + 1700ms);
+	}
+
+	/* só as peças que estão se mexendo ganham will-change (o motor põe .segue-ativo perto da tela) */
+	.hw-segue--foto.segue-ativo img,
+	.hw-segue--luz.segue-ativo::before,
+	.hw-segue--luz.segue-ativo::after,
+	.hw-segue--cortina.segue-ativo::after {
+		will-change: translate;
+	}
+
+	.hw-segue--orbita.segue-ativo::after {
+		will-change: transform;
+	}
+}
+
+@media screen and (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.letra:hover .letra__a {
+		scale: 1.12;
+	}
+
+	.letra:hover .letra__a::after {
+		opacity: 0.45;
+		scale: 1.3;
+	}
+
+}

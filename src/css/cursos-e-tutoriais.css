@@ -1,0 +1,715 @@
+/* =====================================================================
+   CURSOS E TUTORIAIS — seções próprias desta página (18/11/2026)
+   As peças comuns (abertura, "Nesta página", foto com arco, nota, cartões, faixa final) estão no paginas.css.
+   ===================================================================== */
+
+/* ---------- 1. Plataforma de cursos: foto encostada na borda esquerda + "os dois lugares" ---------- */
+.plataforma__grade {
+	display: grid;
+	gap: 2.5rem;
+	align-items: center;
+}
+
+.plataforma__foto img {
+	aspect-ratio: 4 / 3;
+	object-position: 55% 40%;
+}
+
+.lugares {
+	display: grid;
+	gap: 1rem;
+	margin: 2rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.lugar {
+	position: relative;
+	display: grid;
+	grid-template-columns: 3.5rem minmax(0, 1fr);
+	gap: 1.1rem;
+	align-items: center;
+	padding: 1.25rem 1.5rem;
+	border-radius: var(--raio-grande);
+	background: var(--branco);
+	box-shadow: 0 0.75rem 2rem rgba(22, 18, 24, 0.08);
+}
+
+.lugar__icone {
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: var(--petroleo-suave);
+	color: var(--petroleo);
+}
+
+.lugar__icone svg {
+	width: 1.7rem;
+	height: 1.7rem;
+}
+
+/* o segundo lugar (a plataforma) é o destino: ícone cheio */
+.lugar + .lugar .lugar__icone {
+	background: var(--petroleo);
+	color: var(--branco);
+}
+
+/* seta desenhada entre os dois: "este site leva você até a plataforma" */
+.lugar + .lugar::before {
+	content: "";
+	position: absolute;
+	top: -1rem;
+	left: calc(1.5rem + 1.75rem);
+	width: 2px;
+	height: 1rem;
+	background: var(--petroleo-claro);
+}
+
+.lugar__titulo {
+	margin: 0;
+	font-size: var(--t-h3);
+}
+
+.lugar p {
+	margin: 0.2rem 0 0;
+	color: var(--texto-2);
+}
+
+.plataforma__situacao {
+	display: grid;
+	justify-items: start;
+	gap: 0.75rem;
+	margin-top: 1.75rem;
+	padding: 1.25rem 1.5rem;
+	border-left: 5px solid var(--rosa);
+	border-radius: 0 var(--raio) var(--raio) 0;
+	background: var(--papel);
+}
+
+.plataforma__situacao p:last-child {
+	margin: 0;
+	font-size: var(--t-apoio);
+	line-height: 1.55;
+	color: var(--tinta);
+}
+
+@media (min-width: 48rem) {
+	.lugares {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 2rem;
+	}
+
+	.lugar {
+		grid-template-columns: 1fr;
+		align-content: start;
+		align-items: start;
+		gap: 0.9rem;
+		height: 100%;
+	}
+
+	/* lado a lado, o fio vira horizontal */
+	.lugar + .lugar::before {
+		top: calc(1.25rem + 1.75rem);
+		left: -2rem;
+		width: 2rem;
+		height: 2px;
+	}
+}
+
+@media (min-width: 64rem) {
+	.plataforma__grade {
+		grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+		gap: 4rem;
+	}
+
+	/* a foto encosta na borda esquerda da tela (o arco fica do lado do texto) */
+	.plataforma__foto {
+		margin-left: calc(-1 * var(--margem));
+		align-self: stretch;
+	}
+
+	.plataforma__foto img {
+		aspect-ratio: auto;
+		min-height: 32rem;
+	}
+}
+
+/* ---------- 2. Objetivos e públicos: um cartão dividido ao meio ---------- */
+.objetivos__cartao {
+	display: grid;
+	border-radius: var(--raio-grande);
+	background: var(--branco);
+	box-shadow: 0 0.75rem 2rem rgba(22, 18, 24, 0.08);
+}
+
+.objetivos__metade {
+	padding: 2rem 1.5rem;
+}
+
+.objetivos__metade--publicos {
+	border-top: 1px solid var(--fio);
+}
+
+.objetivos__titulo {
+	margin: 0.75rem 0 0;
+	font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+	line-height: 1.12;
+}
+
+.objetivos .lista-check {
+	gap: 1.1rem;
+	margin-top: 1.75rem;
+}
+
+.publicos {
+	display: grid;
+	gap: 1.1rem;
+	margin: 1.75rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.publico {
+	display: grid;
+	grid-template-columns: 3rem minmax(0, 1fr);
+	gap: 1rem;
+	align-items: center;
+	font-size: 1.125rem;
+	font-weight: 600;
+	line-height: 1.45;
+}
+
+.publico__icone {
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	background: var(--petroleo-suave);
+	color: var(--petroleo);
+}
+
+.publico__icone svg {
+	width: 1.45rem;
+	height: 1.45rem;
+}
+
+/* as Redes Femininas: o laço em rosa (rosa só como desenho) */
+.publico:nth-child(3) .publico__icone {
+	background: var(--rosa-claro);
+	color: var(--rosa-profundo);
+}
+
+@media (min-width: 48rem) {
+	.objetivos__metade {
+		padding: 2.75rem 2.5rem;
+	}
+}
+
+@media (min-width: 64rem) {
+	.objetivos__cartao {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.objetivos__metade {
+		padding: 3.5rem 3.25rem;
+	}
+
+	.objetivos__metade--publicos {
+		border-top: 0;
+		border-left: 1px solid var(--fio);
+	}
+}
+
+/* ---------- 3. Temas dos cursos: título à esquerda, quatro cartões em 2 × 2 ---------- */
+.temas__grade {
+	display: grid;
+	gap: 0.5rem;
+}
+
+.temas__cabeca .titulo-secao {
+	margin-top: 0.75rem;
+}
+
+.temas__lista {
+	align-items: stretch;
+}
+
+.temas__topo {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+}
+
+@media (min-width: 48rem) {
+	.temas__lista {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 75rem) {
+	.temas__grade {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.65fr);
+		gap: 3.5rem;
+		align-items: start;
+	}
+
+	/* o título acompanha a rolagem enquanto os cartões passam */
+	.temas__cabeca {
+		position: sticky;
+		top: calc(var(--cab-altura) + 2rem);
+	}
+
+	.temas__lista {
+		margin-top: 0;
+	}
+}
+
+/* ---------- 4. Tutoriais: faixa petróleo com a foto do arco e os três cuidados ---------- */
+.tutoriais {
+	overflow: hidden;
+}
+
+.tutoriais__grade {
+	display: grid;
+	gap: 2.5rem;
+	align-items: center;
+}
+
+.tutoriais__foto img {
+	aspect-ratio: 4 / 3;
+	object-position: 55% 45%;
+}
+
+.tutoriais__destaque {
+	display: inline-block;
+	color: var(--petroleo-luz);
+}
+
+.tutoriais .titulo-secao {
+	margin-top: 0.75rem;
+}
+
+.tutoriais .cabeca-secao__intro {
+	max-width: 34rem;
+}
+
+/* a série das Redes: cartão branco, como os cartões que "mordem" a Home */
+.serie {
+	display: grid;
+	justify-items: start;
+	gap: 0.75rem;
+	margin-top: 2rem;
+	padding: 1.75rem 1.5rem;
+	border-radius: var(--raio-grande);
+	border-top: 6px solid var(--rosa);
+	background: var(--branco);
+	color: var(--tinta);
+	box-shadow: var(--sombra);
+}
+
+.serie__titulo {
+	margin: 0.25rem 0 0;
+	font-size: var(--t-h3);
+	color: var(--tinta);
+}
+
+.serie p:last-child {
+	margin: 0;
+	color: var(--texto-2);
+}
+
+.tutoriais__cuidados {
+	margin-top: 3.5rem;
+}
+
+.tutoriais__subtitulo {
+	margin: 0;
+	font-size: var(--t-h3);
+	color: var(--branco);
+}
+
+.cuidados {
+	display: grid;
+	gap: 1rem;
+	margin: 1.5rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.cuidado {
+	display: grid;
+	grid-template-columns: 3.5rem minmax(0, 1fr);
+	gap: 1.1rem;
+	align-items: center;
+	padding: 1.25rem 1.5rem;
+	border: 1px solid rgba(255, 255, 255, 0.28);
+	border-radius: var(--raio-grande);
+	transition: background-color var(--mov-hover) var(--curva), border-color var(--mov-hover) var(--curva);
+}
+
+.cuidado__icone {
+	display: grid;
+	place-items: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.1);
+	color: var(--petroleo-luz);
+}
+
+.cuidado__icone svg {
+	width: 1.7rem;
+	height: 1.7rem;
+}
+
+.cuidado p {
+	margin: 0;
+	font-family: var(--fonte-titulo);
+	font-size: clamp(1.125rem, 1rem + 0.35vw, 1.3125rem);
+	font-weight: 700;
+	line-height: 1.3;
+	color: var(--branco);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.cuidado:hover {
+		background: rgba(255, 255, 255, 0.08);
+		border-color: rgba(255, 255, 255, 0.5);
+	}
+}
+
+/* a dica do "Texto maior": o mesmo "A+" do botão do topo, num círculo claro */
+.dica {
+	display: grid;
+	grid-template-columns: 4rem minmax(0, 1fr);
+	gap: 1.25rem;
+	align-items: center;
+	margin-top: 1.5rem;
+	padding: 1.25rem 1.5rem;
+	border-radius: var(--raio-grande);
+	background: var(--petroleo-claro);
+	color: var(--tinta);
+}
+
+.dica__sinal {
+	display: grid;
+	place-items: center;
+	width: 4rem;
+	height: 4rem;
+	border-radius: 50%;
+	background: var(--branco);
+	color: var(--petroleo-profundo);
+	font-family: var(--fonte-titulo);
+	font-size: 1.5rem;
+	font-weight: 800;
+	line-height: 1;
+}
+
+.dica p {
+	margin: 0;
+	font-size: var(--t-apoio);
+	line-height: 1.55;
+}
+
+.dica strong {
+	display: block;
+	font-family: var(--fonte-titulo);
+	font-size: 1.1875rem;
+	color: var(--petroleo-profundo);
+}
+
+@media (max-width: 47.99rem) {
+	/* no celular a foto ocupa a largura toda, sem margem, e termina no arco */
+	.tutoriais__foto {
+		margin-inline: calc(-1 * var(--margem));
+		border-radius: 0;
+		clip-path: ellipse(120% 100% at 40% 0);
+	}
+
+	.tutoriais {
+		padding-top: 0;
+	}
+}
+
+@media (min-width: 48rem) {
+	.cuidados {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.cuidado {
+		grid-template-columns: 1fr;
+		align-content: start;
+		padding: 1.75rem 1.5rem;
+	}
+
+	.dica {
+		padding: 1.5rem 2rem;
+	}
+}
+
+@media (min-width: 64rem) {
+	.tutoriais__grade {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		gap: 4rem;
+	}
+
+	.tutoriais__foto {
+		margin-left: calc(-1 * var(--margem));
+		align-self: stretch;
+	}
+
+	.tutoriais__foto img {
+		aspect-ratio: auto;
+		min-height: 34rem;
+	}
+
+	.serie {
+		padding: 2rem 2.25rem;
+	}
+
+	.tutoriais__cuidados {
+		margin-top: 4.5rem;
+	}
+}
+
+/* ---------- 5. Como acessar: trilha de três passos ligados por um fio ---------- */
+.acesso__cabeca {
+	display: grid;
+	gap: 1.25rem;
+}
+
+.acesso__cabeca .titulo-secao {
+	margin-top: 0.75rem;
+}
+
+/* o aviso "é assim que vai funcionar" é uma frase comum logo abaixo do título (cor do texto de apoio),
+   sem forma de pílula: não pode parecer um botão */
+.acesso__aviso {
+	max-width: 40rem;
+}
+
+.trilha-acesso {
+	position: relative;
+	display: grid;
+	gap: 1.25rem;
+	margin: 2.5rem 0 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: passo;
+}
+
+/* o fio que liga os números (vertical no celular) */
+.trilha-acesso::before {
+	content: "";
+	position: absolute;
+	top: 2rem;
+	bottom: 2rem;
+	left: calc(1.5rem + 1.5rem - 1px);
+	width: 2px;
+	background: var(--petroleo-claro);
+}
+
+.passo {
+	position: relative;
+	display: grid;
+	grid-template-columns: 3rem minmax(0, 1fr);
+	column-gap: 1.25rem;
+	row-gap: 0.4rem;
+	align-content: start;
+	padding: 1.5rem;
+	border-radius: var(--raio-grande);
+	background: var(--branco);
+	box-shadow: 0 0.75rem 2rem rgba(22, 18, 24, 0.08);
+}
+
+.passo__num {
+	grid-row: span 2;
+	display: grid;
+	place-items: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	background: var(--petroleo);
+	color: var(--branco);
+	font-family: var(--fonte-titulo);
+	font-size: 1.375rem;
+	font-weight: 800;
+	line-height: 1;
+}
+
+.passo__titulo {
+	margin: 0.5rem 0 0;
+	font-size: var(--t-h3);
+}
+
+.passo p {
+	margin: 0;
+	color: var(--texto-2);
+}
+
+@media (min-width: 64rem) {
+	.trilha-acesso {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 2rem;
+		margin-top: 3.5rem;
+	}
+
+	/* no computador o fio corre na horizontal, por trás dos números que saltam do cartão */
+	.trilha-acesso::before {
+		top: calc(2rem - 1px);
+		bottom: auto;
+		left: 2rem;
+		right: 2rem;
+		width: auto;
+		height: 2px;
+	}
+
+	.passo {
+		grid-template-columns: 1fr;
+		padding: 0 2rem 2rem;
+		margin-top: 2rem;
+	}
+
+	.passo__num {
+		grid-row: auto;
+		width: 4rem;
+		height: 4rem;
+		margin-top: -2rem;
+		font-size: 1.75rem;
+		box-shadow: 0 0 0 6px var(--papel);
+	}
+
+	.passo__titulo {
+		margin-top: 1rem;
+	}
+}
+
+/* ---------- 6. Perguntas frequentes: título fixo + perguntas que abrem ---------- */
+.perguntas__grade {
+	display: grid;
+	gap: 2rem;
+}
+
+.perguntas__cabeca .titulo-secao {
+	margin-top: 0.75rem;
+}
+
+.perguntas__lista {
+	display: grid;
+	gap: 0.85rem;
+}
+
+.pergunta {
+	border-radius: var(--raio);
+	background: var(--branco);
+	box-shadow: inset 0 0 0 1px var(--fio);
+	transition: box-shadow var(--mov-hover) var(--curva), background-color var(--mov-hover) var(--curva);
+}
+
+.pergunta[open] {
+	background: var(--petroleo-suave);
+	box-shadow: inset 0 0 0 1px var(--petroleo-claro);
+}
+
+.pergunta summary {
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-height: 4rem;
+	padding: 1rem 4.75rem 1rem 1.5rem;
+	border-radius: var(--raio);
+	font-family: var(--fonte-titulo);
+	font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
+	font-weight: 700;
+	line-height: 1.35;
+	color: var(--tinta);
+	cursor: pointer;
+	list-style: none;
+}
+
+.pergunta summary::-webkit-details-marker {
+	display: none;
+}
+
+/* o "+" no círculo; aberto, vira "−" */
+.pergunta summary::before,
+.pergunta summary::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	right: 1.5rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	margin-top: -1.25rem;
+	border-radius: 50%;
+}
+
+.pergunta summary::before {
+	background: var(--petroleo-suave);
+	transition: background-color var(--mov-hover) var(--curva);
+}
+
+.pergunta summary::after {
+	background:
+		linear-gradient(var(--petroleo), var(--petroleo)) center / 1rem 2px no-repeat,
+		linear-gradient(var(--petroleo), var(--petroleo)) center / 2px 1rem no-repeat;
+}
+
+.pergunta[open] summary::before {
+	background: var(--petroleo);
+}
+
+.pergunta[open] summary::after {
+	background: linear-gradient(var(--branco), var(--branco)) center / 1rem 2px no-repeat;
+}
+
+.pergunta summary:focus-visible {
+	outline-offset: 2px;
+}
+
+.pergunta__resposta {
+	padding: 0 1.5rem 1.5rem;
+}
+
+.pergunta__resposta p {
+	max-width: 40rem;
+	margin: 0;
+	color: var(--texto-2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.pergunta:not([open]):hover {
+		box-shadow: inset 0 0 0 2px var(--petroleo-claro);
+	}
+
+	.pergunta:not([open]) summary:hover::before {
+		background: var(--petroleo-claro);
+	}
+}
+
+@media (min-width: 64rem) {
+	.perguntas__grade {
+		grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+		gap: 4rem;
+		align-items: start;
+	}
+
+	.perguntas__cabeca {
+		position: sticky;
+		top: calc(var(--cab-altura) + 2rem);
+	}
+
+	.pergunta summary {
+		min-height: 4.5rem;
+		padding-left: 2rem;
+	}
+
+	.pergunta__resposta {
+		padding: 0 2rem 1.75rem;
+	}
+}

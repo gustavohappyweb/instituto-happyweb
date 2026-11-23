@@ -1,0 +1,610 @@
+/* =====================================================================
+   PÁGINAS INTERNAS — peças comuns (18/11/2026)
+   Carregado por todas as páginas de src/html/, depois do style-global.css.
+   Vocabulário da Home 11.2 aprovada: fundo petróleo profundo, cartões brancos com sombra que
+   "mordem" a borda da seção anterior, o arco aprovado na inclusão digital, faixa petróleo no fim.
+   Cada página tem também o seu CSS (o-instituto.css, atuacao.css...) para as seções próprias.
+   ===================================================================== */
+
+/* ---------- 1. Abertura da página: faixa escura terminando em arco ---------- */
+.pagina-abertura {
+	position: relative;
+	padding: 2.5rem 0 6.5rem;
+	background: var(--petroleo-profundo);
+	color: var(--branco);
+	/* a mesma curva da inclusão digital (aprovada): mais funda de um lado que do outro */
+	clip-path: ellipse(160% 100% at 38% 0);
+}
+
+.pagina-abertura__dentro {
+	display: grid;
+	gap: 2rem;
+	align-items: center;
+}
+
+.migalhas ol {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 0.6rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: var(--t-pequeno);
+	color: var(--petroleo-claro);
+}
+
+.migalhas li {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+}
+
+/* separador "›" desenhado, para o leitor de tela não ler o sinal */
+.migalhas li + li::before {
+	content: "";
+	width: 0.45rem;
+	height: 0.45rem;
+	border-top: 2px solid currentColor;
+	border-right: 2px solid currentColor;
+	rotate: 45deg;
+	opacity: 0.7;
+}
+
+.migalhas a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.75rem;
+	padding-inline: 0.25rem;
+	margin-inline: -0.25rem;
+	color: var(--branco);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+}
+
+.migalhas a:hover,
+.migalhas a:focus-visible {
+	text-decoration-thickness: 2px;
+}
+
+.migalhas [aria-current="page"] {
+	font-weight: 600;
+}
+
+.pagina-abertura__titulo {
+	margin: 1.25rem 0 0;
+	max-width: 14em;
+	font-size: var(--t-h1);
+	font-weight: 800;
+	color: var(--branco);
+}
+
+.pagina-abertura__titulo .abertura__destaque,
+.pagina-abertura__destaque {
+	color: var(--petroleo-luz);
+}
+
+.pagina-abertura__subtitulo {
+	max-width: 36rem;
+	margin: 1.25rem 0 0;
+	font-size: clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
+	line-height: 1.55;
+	color: var(--branco);
+}
+
+/* o círculo com o ícone da página — o mesmo ícone do cartão "O que você procura?" da Home */
+.pagina-abertura__icone {
+	display: none;
+}
+
+.pagina-abertura :focus-visible {
+	outline-color: var(--branco);
+}
+
+@media (min-width: 48rem) {
+	.pagina-abertura {
+		padding: 3.5rem 0 8rem;
+	}
+
+	.pagina-abertura__dentro {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.pagina-abertura__icone {
+		position: relative;
+		display: grid;
+		place-items: center;
+		width: clamp(9rem, 4rem + 11vw, 15rem);
+		aspect-ratio: 1;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.07);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+		color: var(--petroleo-luz);
+	}
+
+	/* anel externo, mais fino: a marca do Instituto é feita de círculos */
+	.pagina-abertura__icone::before {
+		content: "";
+		position: absolute;
+		inset: -1.1rem;
+		border-radius: 50%;
+		border: 1px dashed rgba(159, 216, 218, 0.35);
+	}
+
+	.pagina-abertura__icone svg {
+		width: 42%;
+		height: 42%;
+	}
+}
+
+@media (min-width: 64rem) {
+	.pagina-abertura {
+		padding: 4.5rem 0 9.5rem;
+	}
+
+	.pagina-abertura__dentro {
+		gap: 4rem;
+	}
+}
+
+/* ---------- 2. "Nesta página": cartão branco que morde o arco da abertura ---------- */
+.sumario {
+	position: relative;
+	z-index: 2;
+	margin-top: -4rem;
+}
+
+.sumario__cartao {
+	padding: 1.5rem;
+	border-radius: var(--raio-grande);
+	background: var(--branco);
+	box-shadow: var(--sombra);
+}
+
+.sumario__titulo {
+	margin: 0;
+	font-family: var(--fonte);
+	font-size: var(--t-pequeno);
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--rosa-profundo);
+}
+
+.sumario__lista {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+	margin: 1rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sumario__lista a {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	min-height: 3rem;
+	padding: 0.5rem 1.1rem;
+	border: 2px solid var(--petroleo);
+	border-radius: 999px;
+	background: var(--branco);
+	color: var(--petroleo-escuro);
+	font-weight: 600;
+	font-size: var(--t-apoio);
+	line-height: 1.3;
+	text-decoration: none;
+	transition: background-color var(--mov-hover) var(--curva), color var(--mov-hover) var(--curva);
+}
+
+.sumario__num {
+	font-family: var(--fonte-titulo);
+	font-weight: 800;
+	color: var(--petroleo);
+	transition: color var(--mov-hover) var(--curva);
+}
+
+/* seta para baixo no fim de cada pílula: deixa claro que é um link que leva para baixo na página */
+.sumario__lista a::after {
+	content: "";
+	width: 0.5rem;
+	height: 0.5rem;
+	margin: -0.2rem 0 0 0.1rem;
+	border-right: 2px solid currentColor;
+	border-bottom: 2px solid currentColor;
+	rotate: 45deg;
+	transition: translate var(--mov-hover) var(--curva);
+}
+
+.sumario__lista a:focus-visible {
+	background: var(--petroleo);
+	color: var(--branco);
+}
+
+.sumario__lista a:focus-visible .sumario__num {
+	color: var(--branco);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.sumario__lista a:hover {
+		background: var(--petroleo);
+		color: var(--branco);
+	}
+
+	.sumario__lista a:hover .sumario__num {
+		color: var(--branco);
+	}
+
+	.sumario__lista a:hover::after {
+		translate: 0 3px;
+	}
+}
+
+@media (min-width: 64rem) {
+	.sumario {
+		margin-top: -5rem;
+	}
+
+	.sumario__cartao {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: 2rem;
+		align-items: center;
+		padding: 1.75rem 2.25rem;
+	}
+
+	.sumario__lista {
+		margin: 0;
+	}
+}
+
+/* ---------- 3. Seções ---------- */
+.secao {
+	padding-block: 4.5rem;
+}
+
+/* ao pular para uma seção, o cabeçalho fixo é descontado uma vez só (scroll-padding-top do html);
+   o :target do reset.css (7 rem, pensado para a Home) somava outro desconto */
+:target {
+	scroll-margin-top: 0;
+}
+
+/* nada passa da borda da tela: fotos que encostam na borda e entradas laterais não criam rolagem lateral
+   (clip, e não hidden, para não quebrar o cabeçalho fixo) */
+html,
+body {
+	overflow-x: clip;
+}
+
+/* palavras longas quebram em vez de vazar (celular e "Texto maior") */
+h1,
+h2,
+h3,
+h4 {
+	overflow-wrap: break-word;
+	hyphens: auto;
+}
+
+.secao--papel {
+	background: var(--papel);
+}
+
+.secao--branca {
+	background: var(--branco);
+}
+
+.secao--escura {
+	background: var(--petroleo-profundo);
+	color: var(--branco);
+}
+
+.secao--escura .titulo-secao {
+	color: var(--branco);
+}
+
+.secao--escura :focus-visible {
+	outline-color: var(--branco);
+}
+
+.secao--suave {
+	background: var(--petroleo-suave);
+}
+
+/* a primeira seção depois do "Nesta página" sobe por baixo do cartão */
+.sumario + .secao {
+	margin-top: -3rem;
+	padding-top: 7.5rem;
+}
+
+@media (min-width: 64rem) {
+	.secao {
+		padding-block: 6.5rem;
+	}
+
+	.sumario + .secao {
+		margin-top: -4rem;
+		padding-top: 10rem;
+	}
+}
+
+.cabeca-secao {
+	max-width: 46rem;
+}
+
+.cabeca-secao .titulo-secao {
+	margin-top: 0.75rem;
+}
+
+.cabeca-secao__intro {
+	margin: 1.25rem 0 0;
+	color: var(--texto-2);
+}
+
+.secao--escura .cabeca-secao__intro {
+	color: var(--branco);
+}
+
+.corpo-texto {
+	max-width: 40rem;
+	color: var(--texto-2);
+}
+
+.corpo-texto p {
+	margin: 1.25rem 0 0;
+}
+
+.secao--escura .corpo-texto {
+	color: var(--branco);
+}
+
+/* ---------- 4. Foto com o arco aprovado (lado da foto que encosta no texto) ---------- */
+.foto-arco {
+	position: relative;
+	margin: 0;
+	overflow: hidden;
+	border-radius: var(--raio-grande);
+}
+
+.foto-arco img {
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	transition: scale var(--mov-foto) var(--curva);
+}
+
+/* arco na borda esquerda (foto à direita do texto) */
+.foto-arco--esq {
+	border-radius: 0 var(--raio-grande) var(--raio-grande) 0;
+	clip-path: ellipse(100% 130% at 100% 40%);
+}
+
+/* arco na borda direita (foto à esquerda do texto) */
+.foto-arco--dir {
+	border-radius: var(--raio-grande) 0 0 var(--raio-grande);
+	clip-path: ellipse(100% 130% at 0 60%);
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.foto-arco:hover img {
+		scale: 1.04;
+	}
+}
+
+/* ---------- 5. Ficha (lista de dados: rótulo e valor) ---------- */
+.ficha {
+	margin: 0;
+	padding: 0.5rem 1.5rem;
+	border-radius: var(--raio-grande);
+	background: var(--branco);
+	box-shadow: 0 0.75rem 2rem rgba(22, 18, 24, 0.08);
+}
+
+.ficha__linha {
+	display: grid;
+	gap: 0.2rem;
+	padding: 1.1rem 0;
+	border-bottom: 1px solid var(--fio);
+}
+
+.ficha__linha:last-child {
+	border-bottom: 0;
+}
+
+.ficha dt {
+	font-size: var(--t-pequeno);
+	font-weight: 600;
+	color: var(--texto-2);
+}
+
+.ficha dd {
+	margin: 0;
+	font-weight: 600;
+	color: var(--tinta);
+	text-wrap: pretty;
+}
+
+.ficha__pendente {
+	font-weight: 400;
+	color: var(--texto-2);
+}
+
+@media (min-width: 48rem) {
+	.ficha {
+		padding: 0.5rem 2rem;
+	}
+
+	.ficha__linha {
+		grid-template-columns: 12rem minmax(0, 1fr);
+		gap: 1.5rem;
+	}
+}
+
+/* ---------- 6. Nota (aviso honesto: o que ainda está em preparação) ---------- */
+.nota {
+	display: grid;
+	grid-template-columns: 2.25rem minmax(0, 1fr);
+	gap: 1rem;
+	align-items: start;
+	margin: 2rem 0 0;
+	padding: 1.25rem 1.5rem;
+	border-radius: var(--raio);
+	background: var(--rosa-claro);
+	color: var(--tinta);
+	font-size: var(--t-apoio);
+	line-height: 1.55;
+}
+
+.nota svg {
+	width: 2.25rem;
+	height: 2.25rem;
+	padding: 0.45rem;
+	border-radius: 50%;
+	background: var(--branco);
+	color: var(--rosa-profundo);
+}
+
+.nota p {
+	margin: 0;
+}
+
+.nota strong {
+	display: block;
+	margin-bottom: 0.2rem;
+}
+
+@media (min-width: 64rem) {
+	.nota {
+		max-width: 46rem;
+	}
+}
+
+.secao--escura .nota {
+	background: rgba(255, 255, 255, 0.08);
+	color: var(--branco);
+}
+
+/* ---------- 7. Cartões numerados (borda de cima na cor de cada eixo) ---------- */
+.cartoes {
+	display: grid;
+	gap: 1.25rem;
+	margin: 2.5rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.cartao {
+	--cor: var(--eixo-1);
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	height: 100%;
+	padding: 1.75rem 1.5rem 1.75rem;
+	border-radius: var(--raio-grande);
+	border-top: 6px solid var(--cor);
+	background: var(--branco);
+	box-shadow: 0 0.75rem 2rem rgba(22, 18, 24, 0.08);
+	transition: translate var(--mov-hover) var(--curva), box-shadow var(--mov-hover) var(--curva);
+}
+
+.cartao__num {
+	font-family: var(--fonte-titulo);
+	font-size: 2.5rem;
+	font-weight: 800;
+	line-height: 1;
+	color: var(--cor);
+}
+
+.cartao__titulo {
+	margin: 0;
+	font-size: var(--t-h3);
+}
+
+.cartao p {
+	margin: 0;
+	color: var(--texto-2);
+}
+
+.cartao .etiqueta {
+	align-self: flex-start;
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.cartao:hover {
+		translate: 0 -6px;
+		box-shadow: var(--sombra);
+	}
+}
+
+@media (min-width: 48rem) {
+	.cartoes--3 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.cartoes--3 > :last-child:nth-child(odd) {
+		grid-column: 1 / -1;
+	}
+}
+
+@media (min-width: 64rem) {
+	.cartoes--3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.cartoes--3 > :last-child:nth-child(odd) {
+		grid-column: auto;
+	}
+}
+
+/* ---------- 8. Faixa final: o próximo passo (como a faixa da Transparência na Home) ---------- */
+.faixa-final {
+	padding-block: 4.5rem;
+	background: var(--petroleo);
+	color: var(--branco);
+}
+
+.faixa-final__dentro {
+	display: grid;
+	gap: 2rem;
+	align-items: center;
+}
+
+.faixa-final .titulo-secao {
+	margin-top: 0.75rem;
+	color: var(--branco);
+}
+
+.faixa-final p {
+	max-width: 36rem;
+	margin: 1rem 0 0;
+	color: var(--branco);
+}
+
+.faixa-final__botoes {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.faixa-final :focus-visible {
+	outline-color: var(--branco);
+}
+
+@media (min-width: 64rem) {
+	.faixa-final {
+		padding-block: 5.5rem;
+	}
+
+	.faixa-final__dentro {
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: 4rem;
+	}
+}
+
+@media (max-width: 47.99rem) {
+	.faixa-final .botao,
+	.pagina-abertura .botao {
+		width: 100%;
+	}
+}

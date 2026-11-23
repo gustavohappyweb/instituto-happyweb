@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Portal da Transparência | Instituto Happy Web</title>
+	<meta name="description" content="Portal da Transparência do Instituto Happy Web: identificação institucional e as categorias de documentos públicos.">
+	<meta name="robots" content="noindex, nofollow">
+	<link rel="icon" href="../../public/icones/favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="../../public/icones/favicon-48.png" sizes="48x48" type="image/png">
+	<link rel="apple-touch-icon" href="../../public/icones/apple-touch-icon.png">
+	<link rel="preload" href="../../public/fontes/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="../../public/fontes/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+	<!-- "?v=" muda a cada versão: o navegador baixa os arquivos novos em vez de reaproveitar os antigos -->
+	<script src="../js/preferencias.js?v=11.2i3"></script>
+	<link rel="stylesheet" href="../css/normalize.css?v=11.2i3">
+	<link rel="stylesheet" href="../css/reset.css?v=11.2i3">
+	<link rel="stylesheet" href="../css/style-global.css?v=11.2i3">
+	<link rel="stylesheet" href="../css/paginas.css?v=11.2i3">
+	<link rel="stylesheet" href="../css/transparencia.css?v=11.2i3">
+	<script defer src="../js/funções-global.js?v=11.2i3"></script>
+</head>
+<body>
+	<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+	<!-- ============================== CABEÇALHO ============================== -->
+	<header class="cabecalho">
+		<div class="cabecalho__dentro conteudo">
+			<a class="cabecalho__marca" href="../index.html">
+				<img src="../../public/imagens/marca/instituto-happy-web-preto.svg" alt="Instituto Happy Web — página inicial" width="104" height="72">
+			</a>
+			<nav class="menu" aria-label="Menu principal">
+				<ul class="menu__lista">
+					<li><a href="./o-instituto.html">O Instituto</a></li>
+					<li><a href="./atuacao.html">Atuação</a></li>
+					<li><a href="./cursos-e-tutoriais.html">Cursos e tutoriais</a></li>
+					<li><a href="./transparencia.html" aria-current="page">Transparência</a></li>
+				</ul>
+			</nav>
+			<div class="cabecalho__acoes">
+				<button class="botao-texto" type="button" data-texto-maior>
+					<span class="botao-texto__a" data-texto-sinal>A+</span>
+					<span class="botao-texto__rotulo" data-texto-rotulo>Texto maior</span>
+				</button>
+				<a class="botao botao--primario cabecalho__falar" href="./contato.html">Falar com o Instituto</a>
+				<button class="botao-menu" type="button" aria-expanded="false" aria-controls="painel" data-menu-abrir>
+					<span class="botao-menu__traços" aria-hidden="true"></span>
+					<span>Menu</span>
+				</button>
+			</div>
+		</div>
+	</header>
+
+	<!-- painel do menu (celular, tablet e computador com "Texto maior") -->
+	<div class="painel" id="painel" data-painel role="dialog" aria-modal="true" aria-label="Menu" hidden>
+		<div class="painel__topo conteudo">
+			<a class="cabecalho__marca" href="../index.html">
+				<img src="../../public/imagens/marca/instituto-happy-web-preto.svg" alt="Instituto Happy Web — página inicial" width="104" height="72">
+			</a>
+			<button class="botao-menu botao-menu--fechar" type="button" data-menu-fechar>
+				<span class="botao-menu__traços" aria-hidden="true"></span>
+				<span>Fechar</span>
+			</button>
+		</div>
+		<nav class="painel__menu conteudo" aria-label="Menu principal no celular">
+			<ul>
+				<li><a href="../index.html">Início</a></li>
+				<li><a href="./o-instituto.html">O Instituto</a></li>
+				<li><a href="./atuacao.html">Atuação</a></li>
+				<li><a href="./cursos-e-tutoriais.html">Cursos e tutoriais</a></li>
+				<li><a href="./transparencia.html" aria-current="page">Transparência</a></li>
+			</ul>
+			<a class="botao botao--primario painel__falar" href="./contato.html">Falar com o Instituto</a>
+			<address class="painel__endereco">Rua Valdemar Ferraza, <span class="sem-quebra">21 – Amadori</span><br>Pato&nbsp;Branco&nbsp;(PR) – <span class="sem-quebra">CEP 85502-220</span></address>
+		</nav>
+	</div>
+
+	<main id="conteudo" tabindex="-1">
+
+		<!-- ============================== ABERTURA ============================== -->
+		<section class="pagina-abertura" aria-labelledby="pagina-titulo">
+			<div class="pagina-abertura__dentro conteudo">
+				<div class="pagina-abertura__texto">
+					<nav class="migalhas hw-entra hw-entra--texto" aria-label="Você está em">
+						<ol>
+							<li><a href="../index.html">Início</a></li>
+							<li><span aria-current="page">Transparência</span></li>
+						</ol>
+					</nav>
+					<h1 class="pagina-abertura__titulo hw-entra hw-entra--texto" id="pagina-titulo">Portal da Transparência</h1>
+					<p class="pagina-abertura__subtitulo hw-entra hw-entra--texto">Espaço reservado aos documentos e informações públicas do Instituto Happy&nbsp;Web, organizados por categoria.</p>
+				</div>
+				<div class="pagina-abertura__icone hw-entra hw-entra--icone" aria-hidden="true">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+				</div>
+			</div>
+		</section>
+
+		<nav class="sumario conteudo" aria-labelledby="sumario-titulo">
+			<div class="sumario__cartao hw-entra hw-entra--cartao">
+				<h2 class="sumario__titulo" id="sumario-titulo">Nesta página</h2>
+				<ul class="sumario__lista">
+					<li><a href="#identificacao"><span class="sumario__num" aria-hidden="true">01</span>Identificação institucional</a></li>
+					<li><a href="#governanca"><span class="sumario__num" aria-hidden="true">02</span>Diretoria e Conselho Fiscal</a></li>
+					<li><a href="#como-publicamos"><span class="sumario__num" aria-hidden="true">03</span>Como os documentos são publicados</a></li>
+					<li><a href="#documentos"><span class="sumario__num" aria-hidden="true">04</span>Documentos por categoria</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- ============================== 1. IDENTIFICAÇÃO INSTITUCIONAL ============================== -->
+		<section class="secao secao--branca identificacao" id="identificacao" aria-labelledby="identificacao-titulo">
+			<div class="identificacao__grade conteudo">
+				<div class="identificacao__cabeca">
+					<p class="rotulo hw-entra hw-entra--texto">Dados do Instituto</p>
+					<h2 class="titulo-secao hw-entra hw-entra--texto" id="identificacao-titulo">Identificação <span class="destaque">institucional.</span></h2>
+					<a class="link link--solto hw-entra hw-entra--texto" href="./o-instituto.html">Conheça o Instituto</a>
+				</div>
+				<dl class="ficha identificacao__ficha hw-entra hw-entra--cartao">
+					<div class="ficha__linha"><dt>Nome</dt><dd>Instituto Happy Web</dd></div>
+					<div class="ficha__linha"><dt>Natureza jurídica</dt><dd>Associação privada sem fins lucrativos</dd></div>
+					<div class="ficha__linha"><dt>Sede</dt><dd>Rua Valdemar Ferraza, <span class="sem-quebra">21 – Amadori</span><br>Pato&nbsp;Branco&nbsp;(PR) – <span class="sem-quebra">CEP 85502-220</span></dd></div>
+					<div class="ficha__linha"><dt>Desenvolvimento digital</dt><dd>Happy Web, empresa apoiadora</dd></div>
+				</dl>
+			</div>
+		</section>
+
+		<!-- ============================== 2. DIRETORIA E CONSELHO FISCAL ============================== -->
+		<section class="secao secao--escura governanca" id="governanca" aria-labelledby="governanca-titulo">
+			<div class="governanca__grade conteudo">
+				<div class="governanca__texto">
+					<p class="rotulo rotulo--claro hw-entra hw-entra--texto">Governança</p>
+					<h2 class="titulo-secao hw-entra hw-entra--texto" id="governanca-titulo">Diretoria e <span class="governanca__destaque">Conselho Fiscal.</span></h2>
+					<p class="cabeca-secao__intro hw-entra hw-entra--texto">O Instituto conta com uma Diretoria e um Conselho Fiscal. A composição atual será publicada aqui depois de conferida com os documentos oficiais.</p>
+				</div>
+				<ul class="orgaos">
+					<li class="orgao hw-entra hw-entra--cartao">
+						<div class="orgao__topo">
+							<span class="orgao__icone hw-entra hw-entra--icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+							<div>
+								<h3 class="orgao__nome">Diretoria</h3>
+								<p>Responsável pela administração do Instituto.</p>
+							</div>
+						</div>
+						<div class="orgao__composicao">
+							<p class="orgao__rotulo">Composição e mandatos</p>
+							<p>Serão publicados a partir dos atos definitivos do Instituto.</p>
+						</div>
+					</li>
+					<li class="orgao hw-entra hw-entra--cartao">
+						<div class="orgao__topo">
+							<span class="orgao__icone hw-entra hw-entra--icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></span>
+							<div>
+								<h3 class="orgao__nome">Conselho Fiscal</h3>
+								<p>Responsável pela fiscalização das contas.</p>
+							</div>
+						</div>
+						<div class="orgao__composicao">
+							<p class="orgao__rotulo">Composição e mandatos</p>
+							<p>Serão publicados a partir dos atos definitivos do Instituto.</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+		<!-- ============================== 3. COMO OS DOCUMENTOS SÃO PUBLICADOS ============================== -->
+		<section class="secao secao--papel publicacao" id="como-publicamos" aria-labelledby="publicacao-titulo">
+			<div class="publicacao__grade conteudo">
+				<figure class="foto-arco foto-arco--dir publicacao__foto hw-entra hw-entra--esq">
+					<img src="../../public/imagens/fotos/transparencia-documentos-1200.webp?v=p1"
+						srcset="../../public/imagens/fotos/transparencia-documentos-600.webp?v=p1 600w, ../../public/imagens/fotos/transparencia-documentos-900.webp?v=p1 900w, ../../public/imagens/fotos/transparencia-documentos-1200.webp?v=p1 1200w, ../../public/imagens/fotos/transparencia-documentos-1800.webp?v=p1 1800w"
+						sizes="(min-width: 64rem) 50vw, 100vw" width="1800" height="1200" loading="lazy"
+						alt="Foto ilustrativa: duas pessoas sentadas a uma mesa conferem folhas de papel, com pastas de arquivo azuis e amarela à frente.">
+				</figure>
+				<div class="publicacao__texto">
+					<p class="rotulo hw-entra hw-entra--texto">Antes de publicar</p>
+					<h2 class="titulo-secao hw-entra hw-entra--texto" id="publicacao-titulo">Como os documentos <span class="destaque">são publicados.</span></h2>
+					<ul class="lista-check publicacao__lista">
+						<li class="hw-entra hw-entra--texto">Cada documento entrará no portal depois de conferido e aprovado pelos responsáveis do Instituto.</li>
+						<li class="hw-entra hw-entra--texto">As versões públicas não trarão dados pessoais desnecessários, como CPF, RG ou endereços residenciais.</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- ============================== 4. DOCUMENTOS POR CATEGORIA ============================== -->
+		<section class="secao secao--branca documentos" id="documentos" aria-labelledby="documentos-titulo">
+			<div class="conteudo">
+				<div class="documentos__cabeca">
+					<div>
+						<p class="rotulo hw-entra hw-entra--texto">Documentos</p>
+						<h2 class="titulo-secao hw-entra hw-entra--texto" id="documentos-titulo">Documentos <span class="destaque">por categoria.</span></h2>
+					</div>
+					<p class="documentos__intro hw-entra hw-entra--texto">Veja o que cada categoria vai reunir.</p>
+				</div>
+				<!-- aviso único enquanto todas as categorias estão vazias. Quando houver documento, tirar este aviso
+				     e pôr em cada cartão a sua situação: <p class="categoria__situacao">…</p> depois de .categoria__desc -->
+				<div class="nota documentos__aviso hw-entra hw-entra--texto">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 12v4"/><path d="M12 19h.01"/></svg>
+					<p>Ainda não há documentos publicados. Eles aparecerão aqui, organizados por categoria.</p>
+				</div>
+				<ol class="categorias">
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-1)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M16 10h2"/><path d="M16 14h2"/><path d="M6.17 15a3 3 0 0 1 5.66 0"/><circle cx="9" cy="11" r="2"/><rect x="2" y="5" width="20" height="14" rx="2"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">01</span>
+						<h3 class="categoria__titulo">Identificação institucional</h3>
+						<p class="categoria__desc">Nome, natureza jurídica, CNPJ, sede e situação cadastral.</p>
+					</li>
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-2)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M15 12h-5"/><path d="M15 8h-5"/><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">02</span>
+						<h3 class="categoria__titulo">Estatuto Social</h3>
+						<p class="categoria__desc">O estatuto vigente e suas alterações registradas.</p>
+					</li>
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-3)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M10 18v-7"/><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">03</span>
+						<h3 class="categoria__titulo">Governança</h3>
+						<p class="categoria__desc">Como o Instituto se organiza e toma decisões.</p>
+					</li>
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-4)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">04</span>
+						<h3 class="categoria__titulo">Diretoria e Conselho Fiscal</h3>
+						<p class="categoria__desc">Composição atual e mandatos.</p>
+					</li>
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-5)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M5 22h14"/><path d="M19.27 13.73A2.5 2.5 0 0 0 17.5 13h-11A2.5 2.5 0 0 0 4 15.5V17a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1.5c0-.66-.26-1.3-.73-1.77Z"/><path d="M14 13V8.5C14 7 15 7 15 5a3 3 0 0 0-3-3c-1.69 0-3 1-3 3 0 2 1 2 1 3.5V13"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">05</span>
+						<h3 class="categoria__titulo">Atos e documentos institucionais</h3>
+						<p class="categoria__desc">Atas, registros e outros atos oficiais.</p>
+					</li>
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-1)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">06</span>
+						<h3 class="categoria__titulo">Relatórios de atividades</h3>
+						<p class="categoria__desc">O que o Instituto realizou em cada período.</p>
+					</li>
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-2)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">07</span>
+						<h3 class="categoria__titulo">Demonstrações contábeis</h3>
+						<p class="categoria__desc">Balanços e demonstrações financeiras.</p>
+					</li>
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-3)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M8 7h8"/><path d="M8 11h8"/><path d="M8 15h5"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">08</span>
+						<h3 class="categoria__titulo">Prestação de contas</h3>
+						<p class="categoria__desc">Prestações de contas de recursos recebidos, quando houver.</p>
+					</li>
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-4)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">09</span>
+						<h3 class="categoria__titulo">Parcerias e projetos</h3>
+						<p class="categoria__desc">Termos de parceria, convênios e projetos, quando houver.</p>
+					</li>
+					<li class="categoria hw-entra hw-entra--cartao" style="--cor: var(--eixo-5)">
+						<span class="categoria__icone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+						<span class="categoria__num" aria-hidden="true">10</span>
+						<h3 class="categoria__titulo">Políticas institucionais</h3>
+						<p class="categoria__desc">Privacidade, conduta e outras políticas.</p>
+					</li>
+				</ol>
+			</div>
+		</section>
+
+		<!-- ============================== PRÓXIMO PASSO ============================== -->
+		<section class="faixa-final" aria-labelledby="faixa-final-titulo">
+			<div class="faixa-final__dentro conteudo">
+				<div>
+					<p class="rotulo rotulo--claro hw-entra hw-entra--texto">Próximo passo</p>
+					<h2 class="titulo-secao hw-entra hw-entra--texto" id="faixa-final-titulo">Não encontrou uma informação?</h2>
+					<p class="hw-entra hw-entra--texto">Os canais para pedir informações ao Instituto serão divulgados na página de Contato.</p>
+				</div>
+				<div class="faixa-final__botoes hw-entra hw-entra--texto">
+					<a class="botao botao--claro" href="./contato.html">Ir para Contato</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- ============================== RODAPÉ ============================== -->
+	<footer class="rodape">
+		<div class="rodape__grade conteudo">
+			<div class="rodape__marca">
+				<img src="../../public/imagens/marca/instituto-happy-web-branco.svg" alt="Instituto Happy Web" width="173" height="120">
+				<p>Educação, tecnologia e inclusão para fortalecer pessoas e organizações da sociedade civil.</p>
+			</div>
+			<nav class="rodape__menu" aria-labelledby="rodape-menu-titulo">
+				<h2 class="rodape__titulo" id="rodape-menu-titulo">Menu</h2>
+				<ul>
+					<li><a href="./o-instituto.html">O Instituto</a></li>
+					<li><a href="./atuacao.html">Atuação</a></li>
+					<li><a href="./cursos-e-tutoriais.html">Cursos e tutoriais</a></li>
+					<li><a href="./transparencia.html" aria-current="page">Transparência</a></li>
+					<li><a href="./contato.html">Contato</a></li>
+					<li><a href="./privacidade.html">Política de privacidade</a></li>
+				</ul>
+			</nav>
+			<div class="rodape__atendimento">
+				<h2 class="rodape__titulo">Onde estamos</h2>
+				<div class="rodape__sede">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+					<address>Instituto Happy Web<br>Rua Valdemar Ferraza, <span class="sem-quebra">21 – Amadori</span><br>Pato&nbsp;Branco&nbsp;(PR)&nbsp;– <span class="sem-quebra">CEP 85502-220</span></address>
+				</div>
+				<a class="link link--claro link--solto" href="./contato.html">Falar com o Instituto</a>
+			</div>
+		</div>
+		<div class="rodape__base conteudo hw-entra hw-entra--fio">
+			<p>© 2026 Instituto Happy Web · Associação sem fins lucrativos</p>
+			<p>Fotos ilustrativas de banco de imagens.</p>
+			<p>Desenvolvimento digital: Happy Web, empresa apoiadora</p>
+		</div>
+	</footer>
+
+	<!-- flutuante e aviso -->
+	<!-- botão do WhatsApp: o mesmo do site da Happy Web (23/11/2026). O número fica no funções-global.js (WHATSAPP);
+	     enquanto ele estiver vazio, o botão leva à página de Contato -->
+	<a class="whatsapp" href="./contato.html" data-whatsapp aria-label="Conversar pelo WhatsApp">
+		<svg viewBox="0 0 1219.547 1225.016" width="35" height="35" aria-hidden="true" focusable="false">
+			<path fill="#E0E0E0" d="M1041.858 178.02C927.206 63.289 774.753.07 612.325 0 277.617 0 5.232 272.298 5.098 606.991c-.039 106.986 27.915 211.42 81.048 303.476L0 1225.016l321.898-84.406c88.689 48.368 188.547 73.855 290.166 73.896h.258.003c334.654 0 607.08-272.346 607.222-607.023.056-162.208-63.052-314.724-177.689-429.463zm-429.533 933.963h-.197c-90.578-.048-179.402-24.366-256.878-70.339l-18.438-10.93-191.021 50.083 51-186.176-12.013-19.087c-50.525-80.336-77.198-173.175-77.16-268.504.111-278.186 226.507-504.503 504.898-504.503 134.812.056 261.519 52.604 356.814 147.965 95.289 95.36 147.728 222.128 147.688 356.948-.118 278.195-226.522 504.543-504.693 504.543z"/>
+			<path fill="#25D366" d="M27.875 1190.114l82.211-300.18c-50.719-87.852-77.391-187.523-77.359-289.602.133-319.398 260.078-579.25 579.469-579.25 155.016.07 300.508 60.398 409.898 169.891 109.414 109.492 169.633 255.031 169.57 409.812-.133 319.406-260.094 579.281-579.445 579.281-.023 0 .016 0 0 0h-.258c-96.977-.031-192.266-24.375-276.898-70.5l-307.188 80.548z"/>
+			<path fill="#FFF" fill-rule="evenodd" clip-rule="evenodd" d="M462.273 349.294c-11.234-24.977-23.062-25.477-33.75-25.914-8.742-.375-18.75-.352-28.742-.352-10 0-26.25 3.758-39.992 18.766-13.75 15.008-52.5 51.289-52.5 125.078 0 73.797 53.75 145.102 61.242 155.117 7.5 10 103.758 166.266 256.203 226.383 126.695 49.961 152.477 40.023 179.977 37.523s88.734-36.273 101.234-71.297c12.5-35.016 12.5-65.031 8.75-71.305-3.75-6.25-13.75-10-28.75-17.5s-88.734-43.789-102.484-48.789-23.75-7.5-33.75 7.516c-10 15-38.727 48.773-47.477 58.773-8.75 10.023-17.5 11.273-32.5 3.773-15-7.523-63.305-23.344-120.609-74.438-44.586-39.75-74.688-88.844-83.438-103.859-8.75-15-.938-23.125 6.586-30.602 6.734-6.719 15-17.508 22.5-26.266 7.484-8.758 9.984-15.008 14.984-25.008 5-10.016 2.5-18.773-1.25-26.273s-32.898-81.67-46.234-111.326z"/>
+			<path fill="#FFF" d="M1036.898 176.091C923.562 62.677 772.859.185 612.297.114 281.43.114 12.172 269.286 12.039 600.137 12 705.896 39.633 809.13 92.156 900.13L7 1211.067l318.203-83.438c87.672 47.812 186.383 73.008 286.836 73.047h.255.003c330.812 0 600.109-269.219 600.25-600.055.055-160.343-62.328-311.108-175.649-424.53zm-424.601 923.242h-.195c-89.539-.047-177.344-24.086-253.93-69.531l-18.227-10.805-188.828 49.508 50.414-184.039-11.875-18.867c-49.945-79.414-76.312-171.188-76.273-265.422.109-274.992 223.906-498.711 499.102-498.711 133.266.055 258.516 52 352.719 146.266 94.195 94.266 146.031 219.578 145.992 352.852-.118 274.999-223.923 498.749-498.899 498.749z"/>
+		</svg>
+		<span class="whatsapp__selo" aria-hidden="true">1</span>
+	</a>
+	<a class="voltar-topo" href="#conteudo" data-voltar-topo hidden>
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+		<span class="visualmente-oculto">Voltar ao topo</span>
+	</a>
+	<div class="aviso-privacidade" data-aviso role="region" aria-label="Aviso de privacidade" hidden>
+		<p>Este site não usa cookies de rastreamento. Ele só guarda, neste aparelho, preferências de uso, como o tamanho da letra e que você já viu este aviso. <a class="link link--claro" href="./privacidade.html">Política de privacidade</a></p>
+		<button class="botao botao--claro botao--pequeno" type="button" data-aviso-ok>Entendi</button>
+	</div>
+</body>
+</html>
